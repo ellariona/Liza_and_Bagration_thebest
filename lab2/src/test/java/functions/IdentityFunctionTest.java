@@ -7,6 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class IdentityFunctionTest {
 
     @Test
-    void apply() {
+    public void testApply() {
+        IdentityFunction identityFunction = new IdentityFunction();
+        for (int j = 0; j < 9; j++) {
+            double z = identityFunction.apply(j);
+            assertEquals(z, j);
+        }
     }
 }
