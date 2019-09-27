@@ -5,6 +5,7 @@ public class ConstantFunction implements MathFunction {
     {
         this.constnumber = constnumber;
     }
+    @Override
     public double apply(double x)
     {
         return constnumber;
