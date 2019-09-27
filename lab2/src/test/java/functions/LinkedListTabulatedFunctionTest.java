@@ -8,6 +8,8 @@ class LinkedListTabulatedFunctionTest {
     double[] x = {1.2, 2.5, 3.3, 4.8, 9.5};
     double[] y = {4, 8, 12, 15, 18};
     LinkedListTabulatedFunction listOne = new LinkedListTabulatedFunction(x, y);
+    SqrFunction func = new SqrFunction();
+    LinkedListTabulatedFunction listTwo = new LinkedListTabulatedFunction(func, 1, 3, 3);
 
     @Test
     void getCount() {
@@ -21,7 +23,7 @@ class LinkedListTabulatedFunctionTest {
 
     @Test
     void rightBound() {
-        assertEquals(8, listOne.rightBound());
+        assertEquals(9.5, listOne.rightBound());
     }
 
     @Test
@@ -32,6 +34,7 @@ class LinkedListTabulatedFunctionTest {
     @Test
     void getY() {
         assertEquals(4, listOne.getY(0));
+        assertEquals(4, listTwo.getY(1));
     }
 
     @Test
@@ -67,6 +70,6 @@ class LinkedListTabulatedFunctionTest {
 
     @Test
     void extrapolateLeft() {
-        assertEquals(4+(8-4)/(2.5-1.2)*(1.3-1.2),listOne.extrapolateLeft(1.3));
+        assertEquals(4 + (8 - 4) / (2.5 - 1.2) * (1.3 - 1.2), listOne.extrapolateLeft(1.3));
     }
 }
