@@ -42,13 +42,19 @@ abstract class ArrayTabulatedFunction extends AbstractTabulatedFunction
 
         }
     }
+    @Override
     public int getCount() { return count; }
+    @Override
     public double getX(int index) {return xValues[index];}
+    @Override
     public double getY(int index) {return yValues[index];}
+    @Override
     public void setY(int index, double value) {yValues[index] = value;}
+    @Override
     public double leftBound() {return xValues[0];}
+    @Override
     public double rightBound() {return xValues[count-1];}
-
+    @Override
     public int indexOfX(double x)
     {
         int i;
@@ -59,8 +65,8 @@ abstract class ArrayTabulatedFunction extends AbstractTabulatedFunction
         }
         return -1;
     }
-
-    public int index0fy(double y)
+    @Override
+    public int indexOfY(double y)
     {
         int i;
         for (i = 0; i < count; i++) {
@@ -70,6 +76,7 @@ abstract class ArrayTabulatedFunction extends AbstractTabulatedFunction
         }
         return -1;
     }
+    @Override
     protected int floorIndexOfX(double x)
     {
         int i;
@@ -83,17 +90,19 @@ abstract class ArrayTabulatedFunction extends AbstractTabulatedFunction
         }
         return count;
     }
-
+    @Override
     protected double extrapolateLeft(double x)
     {
         if (count == 1) { return x; }
         return interpolate(x, xValues[0], xValues[1], yValues[0], yValues[1]);
     }
+    @Override
     protected double extrapolateRight(double x)
     {
         if (count == 1) { return x;}
         return interpolate(x, xValues[count - 2], xValues[count - 1], yValues[count - 2], yValues[count - 1]);
     }
+    @Override
     protected double interpolate(double x, int floorIndex)
     {
         if (count == 1) { return x; }
