@@ -8,6 +8,6 @@ class LogFunctionTest {
     public void testApplyLog()
     {
         LogFunction testFunction = new LogFunction();
-        assertEquals(identityFunction.apply(10),  1, 0.01)
+        assertEquals(testFunction.apply(10),  1, 0.01);
     }
 }
