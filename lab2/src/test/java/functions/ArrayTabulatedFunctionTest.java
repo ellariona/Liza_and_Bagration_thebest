@@ -19,13 +19,17 @@ class ArrayTabulatedFunctionTest {
 
     @Test
     void getX() {
-        assertEquals(3, myFunc2.getX(3), 0.001);
+        assertEquals(1, myFunc2.getX(0), 0.001);
+        assertEquals(5, myFunc.getX(0), 0.001);
+        assertEquals(13, myFunc.getX(2), 0.001);
         assertEquals(6.7, myFunc.getX(1), 0.001);
     }
 
     @Test
     void getY() {
         assertEquals(7.19, myFunc.getY(1), 0.001);
+        assertEquals(7, myFunc.getY(0), 0.001);
+        assertEquals(15, myFunc.getY(2), 0.001);
     }
 
     @Test
@@ -41,36 +45,48 @@ class ArrayTabulatedFunctionTest {
     @Test
     void indexOfX() {
         assertEquals(-1, myFunc.indexOfX(1), 0.001);
+        assertEquals(-1, myFunc.indexOfX(0), 0.001);
+        assertEquals(-1, myFunc.indexOfX(2), 0.001);
     }
 
     @Test
     void indexOfY() {
         assertEquals(-1, myFunc.indexOfY(1), 0.001);
+        assertEquals(-1, myFunc.indexOfX(0), 0.001);
+        assertEquals(-1, myFunc.indexOfX(2), 0.001);
     }
 
     @Test
     void floorIndexOfX() {
         assertEquals(1, myFunc.floorIndexOfX(6.7), 0.001);
+        assertEquals(0, myFunc.floorIndexOfX(5), 0.001);
     }
 
     @Test
     void extrapolateLeft() {
         assertEquals(7.19, myFunc.extrapolateLeft(6.7), 0.001);
+        assertEquals(7, myFunc.extrapolateLeft(5), 0.001);
     }
 
     @Test
     void extrapolateRight() {
         assertEquals(7.19, myFunc.extrapolateRight((6.7)), 0.001);
+        assertEquals(15, myFunc.extrapolateRight(13), 0.001);
     }
 
     @Test
     void interpolate() {
         assertEquals(7, myFunc.interpolate(5, 0), 0.001);
+        assertEquals(7.19, myFunc.interpolate(6.7,1), 0.001);
     }
 
     @Test
     void setY() {
-        myFunc.setY(1, 2);
-        assertEquals(2, myFunc.getY(1), 0.001);
+        myFunc.setY(0, 7);
+        assertEquals(7, myFunc.getY(0), 0.001);
+        myFunc.setY(1, 7.19);
+        assertEquals(7.19, myFunc.getY(1), 0.001);
+        myFunc.setY(2, 15);
+        assertEquals(15, myFunc.getY(2), 0.001);
     }
 }
