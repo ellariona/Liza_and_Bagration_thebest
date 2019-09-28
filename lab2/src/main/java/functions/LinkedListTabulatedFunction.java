@@ -16,7 +16,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
             newNode.prev = head.prev;
             newNode.next = head;
             head.prev.next = newNode;
-            head.prev = newNode;
         }
         head.prev = newNode;
         count++;
