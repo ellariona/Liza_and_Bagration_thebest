@@ -14,12 +14,12 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
             newNode.next = newNode;
             newNode.prev = newNode;
         } else {
-            newNode.prev = last;
+            newNode.prev = head.prev;
             newNode.next = head;
-            last.next = newNode;
+            head.prev.next = newNode;
             head.prev = newNode;
         }
-        last = newNode;
+        head.prev = newNode;
         count++;
     }
 
@@ -33,7 +33,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         if (xFrom > xTo) {
             double z = xTo;
             xTo = xFrom;
-            xFrom = xTo;
+            xFrom = z;
         }
         double stepX = (xTo - xFrom) / (count - 1);
         if (xFrom != xTo) {
@@ -54,7 +54,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public double rightBound() {
-        return last.x;
+        return head.prev.x;
     }
 
     private Node getNode(int index) {
@@ -96,7 +96,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     public int floorIndexOfX(double x) {
         if (x < head.x)
             return 0;
-        if (x > last.x)
+        if (x > head.prev.x)
             return count;
         for (int i = 1; i < count; i++) {
             if (x < getX(i))
@@ -116,14 +116,14 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected double extrapolateRight(double x) {
-        Node left = last.prev;
-        return left.y + (last.y - left.y) / (last.x - left.x) * (x - left.x);
+        Node left = head.prev.prev;
+        return super.interpolate(x,left.x,last.x,left.y,head.prev.y);
     }
 
     @Override
     protected double extrapolateLeft(double x) {
         Node right = head.next;
-        return head.y + (right.y - head.y) / (right.x - head.x) * (x - head.x);
+        return super.interpolate(x,head.x,right.x,head.y,right.y);
     }
 }
 

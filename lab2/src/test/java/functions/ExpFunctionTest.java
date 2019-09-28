@@ -9,6 +9,6 @@ class ExpFunctionTest {
     @Test
     void applyExp() {
         ExpFunction expFunction = new ExpFunction();
-        assertEquals(Math.exp(3),expFunction.apply(3));
+        assertEquals(Math.exp(3), expFunction.apply(3));
     }
 }

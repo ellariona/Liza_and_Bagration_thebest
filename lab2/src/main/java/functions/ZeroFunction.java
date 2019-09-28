@@ -1,7 +1,7 @@
 package functions;
+
 public class ZeroFunction extends ConstantFunction {
-   ZeroFunction()
-    {
+    ZeroFunction() {
         super(0);
     }
 }

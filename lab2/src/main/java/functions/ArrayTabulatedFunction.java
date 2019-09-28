@@ -13,7 +13,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         this.yValues = Arrays.copyOf(yValues, count);
     }
 
-    ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+    public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
         this.count = count;
         if (xFrom > xTo) {
             double tmp = xFrom;

@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayTabulatedFunctionTest {
-    private double[] Xvalues = {5, 6.7, 13};
-    private double[] Yvavlues = {7, 7.19, 15};
+    private double[] xValues = {5, 6.7, 13};
+    private double[] yValues = {7, 7.19, 15};
 
-    ArrayTabulatedFunction myFunc = new ArrayTabulatedFunction(Xvalues, Yvavlues);
+    ArrayTabulatedFunction myFunc = new ArrayTabulatedFunction(xValues, yValues);
+    SqrFunction sqrFunction = new SqrFunction();
+    ArrayTabulatedFunction myFunc2 = new ArrayTabulatedFunction(sqrFunction, 1, 6, 6);
 
     @Test
     void getCount() {
@@ -17,6 +19,7 @@ class ArrayTabulatedFunctionTest {
 
     @Test
     void getX() {
+        assertEquals(3, myFunc2.getX(3), 0.001);
         assertEquals(6.7, myFunc.getX(1), 0.001);
     }
 
@@ -67,7 +70,7 @@ class ArrayTabulatedFunctionTest {
 
     @Test
     void setY() {
-        myFunc.setY(1,2);
+        myFunc.setY(1, 2);
         assertEquals(2, myFunc.getY(1), 0.001);
     }
 }
