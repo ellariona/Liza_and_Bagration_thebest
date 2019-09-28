@@ -7,7 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class LogFunctionTest {
     @Test
     public void testApplyLog() {
-        LogFunction testFunction = new LogFunction();
-        assertEquals(testFunction.apply(10), 1, 0.01);
+        LogFunction testFunctionLog = new LogFunction();
+        assertEquals(Math.log10(-3), testFunctionLog.apply(-3), 0.001);
+        assertEquals(Math.log10(7), testFunctionLog.apply(7), 0.001);
+        assertEquals(Math.log10(2.5), testFunctionLog.apply(2.5), 0.001);
     }
 }
