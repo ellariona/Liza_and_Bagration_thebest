@@ -1,4 +1,4 @@
-package functions;
+package ru.ssau.tk.ellapil.lab2.functions;
 
 public class SqrFunction implements MathFunction {
     @Override

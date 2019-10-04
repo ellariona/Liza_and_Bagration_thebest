@@ -1,4 +1,4 @@
-package functions;
+package ru.ssau.tk.ellapil.lab2.functions;
 
 public abstract class AbstractTabulatedFunction implements TabulatedFunction {
     abstract protected int floorIndexOfX(double x);

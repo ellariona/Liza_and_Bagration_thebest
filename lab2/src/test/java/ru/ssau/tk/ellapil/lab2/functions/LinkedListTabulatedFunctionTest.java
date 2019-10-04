@@ -1,10 +1,10 @@
-package functions;
+package ru.ssau.tk.ellapil.lab2.functions;
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.testng.Assert.*;
 
-class LinkedListTabulatedFunctionTest {
+public class LinkedListTabulatedFunctionTest {
     double[] x = {1.2, 2.5, 3.3, 4.8, 9.5};
     double[] y = {4, 8, 12, 15, 18};
     LinkedListTabulatedFunction listOne = new LinkedListTabulatedFunction(x, y);
@@ -28,22 +28,22 @@ class LinkedListTabulatedFunctionTest {
 
     @Test
     void getX() {
-        assertEquals(1.2, listOne.getX(0));
-        assertEquals(2,listTwo.getX(1));
-        assertEquals(3.3, listOne.getX(2));
+        assertEquals(1.2, listOne.getX(0),0.01);
+        assertEquals(2,listTwo.getX(1),0.01);
+        assertEquals(3.3, listOne.getX(2),0.01);
     }
 
     @Test
     void getY() {
-        assertEquals(4, listOne.getY(0));
-        assertEquals(4, listTwo.getY(1));
-        assertEquals(15,listOne.getY(3));
+        assertEquals(4, listOne.getY(0),0.01);
+        assertEquals(4, listTwo.getY(1),0.01);
+        assertEquals(15,listOne.getY(3),0.01);
     }
 
     @Test
     void setY() {
         listOne.setY(1, 10);
-        assertEquals(10, listOne.getY(1));
+        assertEquals(10, listOne.getY(1),0.01);
     }
 
     @Test

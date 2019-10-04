@@ -1,10 +1,10 @@
-package functions;
+package ru.ssau.tk.ellapil.lab2.functions;
 
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.testng.Assert.*;
 
-class ExpFunctionTest {
+public class ExpFunctionTest {
 
     @Test
     void applyExp() {
