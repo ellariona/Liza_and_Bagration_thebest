@@ -14,6 +14,6 @@ public class ZeroFunctionTest {
 
     @Test
     public void testGetConstNumber() {
-        assertEquals(testFunction.GetConstNumber(), 0, 0.0001);
+        assertEquals(testFunction.getConstNumber(), 0, 0.0001);
     }
 }

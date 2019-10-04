@@ -14,6 +14,6 @@ public class ConstantFunctionTest {
 
     @Test
     public void testGetConstNumber() {
-        assertEquals(testFunction.GetConstNumber(), 2, 0.0001);
+        assertEquals(testFunction.getConstNumber(), 2, 0.0001);
     }
 }
