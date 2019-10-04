@@ -77,7 +77,7 @@ public class ArrayTabulatedFunctionTest {
     @Test
     void interpolate() {
         assertEquals(7, myFunc.interpolate(5, 0), 0.001);
-        assertEquals(7.19, myFunc.interpolate(6.7,1), 0.001);
+        assertEquals(7.19, myFunc.interpolate(6.7, 1), 0.001);
     }
 
     @Test

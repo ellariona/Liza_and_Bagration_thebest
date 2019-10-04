@@ -11,7 +11,7 @@ public class IdentityFunctionTest {
         IdentityFunction identityFunction = new IdentityFunction();
         for (int j = 0; j < 9; j++) {
             double z = identityFunction.apply(j);
-            assertEquals(z, j,0.01);
+            assertEquals(z, j, 0.01);
         }
     }
 }

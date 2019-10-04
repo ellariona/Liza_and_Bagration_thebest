@@ -28,22 +28,22 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     void getX() {
-        assertEquals(1.2, listOne.getX(0),0.01);
-        assertEquals(2,listTwo.getX(1),0.01);
-        assertEquals(3.3, listOne.getX(2),0.01);
+        assertEquals(1.2, listOne.getX(0), 0.01);
+        assertEquals(2, listTwo.getX(1), 0.01);
+        assertEquals(3.3, listOne.getX(2), 0.01);
     }
 
     @Test
     void getY() {
-        assertEquals(4, listOne.getY(0),0.01);
-        assertEquals(4, listTwo.getY(1),0.01);
-        assertEquals(15,listOne.getY(3),0.01);
+        assertEquals(4, listOne.getY(0), 0.01);
+        assertEquals(4, listTwo.getY(1), 0.01);
+        assertEquals(15, listOne.getY(3), 0.01);
     }
 
     @Test
     void setY() {
         listOne.setY(1, 10);
-        assertEquals(10, listOne.getY(1),0.01);
+        assertEquals(10, listOne.getY(1), 0.01);
     }
 
     @Test
@@ -51,6 +51,7 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(1, listTwo.indexOfX(2));
         assertEquals(2, listOne.indexOfX(3.3));
         assertEquals(3, listOne.indexOfX(4.8));
+        assertEquals(-1, listOne.indexOfX(4.5));
     }
 
     @Test
@@ -58,6 +59,7 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(2, listTwo.indexOfY(9));
         assertEquals(1, listOne.indexOfY(8));
         assertEquals(2, listOne.indexOfY(12));
+        assertEquals(-1, listOne.indexOfY(4.5));
     }
 
     @Test

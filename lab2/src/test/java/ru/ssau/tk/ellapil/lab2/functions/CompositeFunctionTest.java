@@ -13,15 +13,16 @@ public class CompositeFunctionTest {
     ArrayTabulatedFunction tabulatedFunction = new ArrayTabulatedFunction(xValues, yValues);
     ArrayTabulatedFunction tabulatedFunction1 = new ArrayTabulatedFunction(compositeFunction2, 1, 10, 10);
     LinkedListTabulatedFunction list = new LinkedListTabulatedFunction(xValues, yValues);
+
     @Test
     void applyTest() {
         double z1 = compositeFunction1.apply(3);
-        assertEquals(9, z1,0.01);
+        assertEquals(9, z1, 0.01);
         z1 = compositeFunction2.apply(3);
-        assertEquals(Math.exp(Math.log10(9)), z1,0.01);
-        assertEquals(9, new SqrFunction().andThen(tabulatedFunction).apply(2),0.01);
+        assertEquals(Math.exp(Math.log10(9)), z1, 0.01);
+        assertEquals(9, new SqrFunction().andThen(tabulatedFunction).apply(2), 0.01);
         assertEquals(9 * 9, new SqrFunction().andThen(tabulatedFunction).andThen(compositeFunction1).apply(2), 0.00001);
         assertEquals(9 * 9, new SqrFunction().andThen(list).andThen(compositeFunction1).apply(2), 0.00001);
-        assertEquals( Math.exp(4) ,tabulatedFunction1.andThen(new SqrFunction()).apply(10),0.001);
+        assertEquals(Math.exp(4), tabulatedFunction1.andThen(new SqrFunction()).apply(10), 0.001);
     }
 }
