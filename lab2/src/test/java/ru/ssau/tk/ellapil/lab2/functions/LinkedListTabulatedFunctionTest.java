@@ -8,8 +8,7 @@ public class LinkedListTabulatedFunctionTest {
     double[] x = {1.2, 2.5, 3.3, 4.8, 9.5};
     double[] y = {4, 8, 12, 15, 18};
     LinkedListTabulatedFunction listOne = new LinkedListTabulatedFunction(x, y);
-    SqrFunction func = new SqrFunction();
-    LinkedListTabulatedFunction listTwo = new LinkedListTabulatedFunction(func, 1, 3, 3);
+    LinkedListTabulatedFunction listTwo = new LinkedListTabulatedFunction(new SqrFunction(), 1, 3, 3);
 
     @Test
     void getCount() {
@@ -64,6 +63,9 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     void floorIndexOfX() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            listOne.floorIndexOfX(-1.2);
+        });
         assertEquals(1, listTwo.floorIndexOfX(2.2));
         assertEquals(2, listOne.floorIndexOfX(4.5));
         assertEquals(1, listOne.floorIndexOfX(3));
@@ -71,6 +73,10 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     void interpolate() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            LinkedListTabulatedFunction listThree = new LinkedListTabulatedFunction(new double[]{12}, new double[]{13});
+        });
+
         assertEquals(8 + (12 - 8) / (3.3 - 2.5) * (3 - 2.5), listOne.interpolate(3, 1));
     }
 
