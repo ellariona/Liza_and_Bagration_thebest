@@ -1,6 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.functions;
 
-public interface TabulatedFunction extends MathFunction {
+public interface TabulatedFunction extends MathFunction, Iterable<Point> {
     int getCount();
 
     double getX(int index);

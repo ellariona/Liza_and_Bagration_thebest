@@ -4,6 +4,9 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
+import ru.ssau.tk.ellapil.lab2.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.ellapil.lab2.exceptions.DifferentLengthOfArraysException;
+
 public class ArrayTabulatedFunctionTest {
     private double[] xValues = {5, 6.7, 13};
     private double[] yValues = {7, 7.19, 15};

@@ -4,7 +4,8 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class LogFunctionTest {
+public class
+LogFunctionTest {
     @Test
     public void testApplyLog() {
         LogFunction testFunctionLog = new LogFunction();

@@ -1,5 +1,7 @@
 package ru.ssau.tk.ellapil.lab2.functions;
 
+import java.util.Iterator;
+
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     private Node head;
     protected int count;
@@ -137,11 +139,15 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         Node right = head.next;
         return super.interpolate(x, head.x, right.x, head.y, right.y);
     }
-}
 
-class Node {
-    public Node next;
-    public Node prev;
-    public double x;
-    public double y;
+    public Iterator<Point> iterator() {
+        throw new UnsupportedOperationException();
+    }
+
+    class Node {
+        public Node next;
+        public Node prev;
+        public double x;
+        public double y;
+    }
 }

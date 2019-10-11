@@ -1,6 +1,7 @@
 package ru.ssau.tk.ellapil.lab2.functions;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     private double[] xValues;
@@ -132,5 +133,9 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
             return yValues[0];
         }
         return interpolate(x, xValues[floorIndex], xValues[floorIndex + 1], yValues[floorIndex], yValues[floorIndex + 1]);
+    }
+   public Iterator<Point> iterator()
+    {
+       throw new UnsupportedOperationException();
     }
 }
