@@ -22,6 +22,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) throws IllegalArgumentException {
+        checkLengthIsTheSame(xValues, yValues);
+        checkSorted(xValues);
         if (xValues.length < 2) {
             throw new IllegalArgumentException("length less then allowed minimum");
         }
