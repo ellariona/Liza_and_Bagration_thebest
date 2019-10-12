@@ -1,7 +1,11 @@
 package ru.ssau.tk.ellapil.lab2.functions;
 
+import com.sun.jdi.InternalException;
+import ru.ssau.tk.ellapil.lab2.exceptions.InterpolationException;
+
 import java.util.Arrays;
 import java.util.Iterator;
+
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     private double[] xValues;
@@ -99,11 +103,10 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected int floorIndexOfX(double x) {
-        int i;
         if (x < leftBound()) {
             return 0;
         }
-        for (i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             if (xValues[i] > x) {
                 return i - 1;
             }
@@ -129,11 +132,15 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected double interpolate(double x, int floorIndex) {
+        if (!(xValues[floorIndex] < x && x < xValues[floorIndex + 1])) {
+            throw new InterpolationException();
+        }
         if (count == 1) {
             return yValues[0];
         }
         return interpolate(x, xValues[floorIndex], xValues[floorIndex + 1], yValues[floorIndex], yValues[floorIndex + 1]);
     }
+
 
     public Iterator<Point> iterator() {
         throw new UnsupportedOperationException();

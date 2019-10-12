@@ -12,7 +12,7 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction {
 
     abstract protected double interpolate(double x, int floorIndex);
 
-    double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
+    protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
         return leftY + (rightY - leftY) * (x - leftX) / (rightX - leftX);
     }
 
@@ -38,8 +38,7 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction {
 
     static void checkSorted(double[] xValues) {
         for (int i = 1; i < xValues.length; i++) {
-            if (xValues[i] >= xValues[i - 1]) ;
-            {
+            if (xValues[i] <= xValues[i - 1]) {
                 throw new ArrayIsNotSortedException();
             }
         }

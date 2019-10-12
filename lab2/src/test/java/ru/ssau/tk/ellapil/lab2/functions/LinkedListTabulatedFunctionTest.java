@@ -2,6 +2,8 @@ package ru.ssau.tk.ellapil.lab2.functions;
 
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+
 import static org.testng.Assert.*;
 
 public class LinkedListTabulatedFunctionTest {
@@ -88,5 +90,14 @@ public class LinkedListTabulatedFunctionTest {
     @Test
     void extrapolateLeft() {
         assertEquals(4 + (8 - 4) / (2.5 - 1.2) * (1.3 - 1.2), listOne.extrapolateLeft(1.3));
+    }
+
+    @Test
+    void iterator() {
+        Iterator<Point> iterator;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+        }
+
     }
 }

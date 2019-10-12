@@ -1,7 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.functions;
 
-public class
-CompositeFunction implements MathFunction {
+public class CompositeFunction implements MathFunction {
     private MathFunction firstFunction;
     private MathFunction secondFunction;
 

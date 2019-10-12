@@ -10,10 +10,11 @@ import ru.ssau.tk.ellapil.lab2.exceptions.DifferentLengthOfArraysException;
 public class ArrayTabulatedFunctionTest {
     private double[] xValues = {5, 6.7, 13};
     private double[] yValues = {7, 7.19, 15};
+    private double[] zValues = {1, 2, 3, 4};
+    private double[] bValues = {2, 1, 8};
 
     ArrayTabulatedFunction myFunc = new ArrayTabulatedFunction(xValues, yValues);
-    SqrFunction sqrFunction = new SqrFunction();
-    ArrayTabulatedFunction myFunc2 = new ArrayTabulatedFunction(sqrFunction, 1, 6, 6);
+    ArrayTabulatedFunction myFunc2 = new ArrayTabulatedFunction(new SqrFunction(), 1, 6, 6);
 
     @Test
     void getCount() {
@@ -92,4 +93,17 @@ public class ArrayTabulatedFunctionTest {
         myFunc.setY(2, 15);
         assertEquals(15, myFunc.getY(2), 0.001);
     }
+
+    @Test
+    void testArrayTabulated() {
+        assertThrows(DifferentLengthOfArraysException.class, () -> {
+            ArrayTabulatedFunction testValue = new ArrayTabulatedFunction(xValues, zValues);
+        });
+        assertThrows(ArrayIsNotSortedException.class, () -> {
+            ArrayTabulatedFunction secondValue = new ArrayTabulatedFunction(bValues, yValues);
+        });
+    }
+
 }
+
+

@@ -1,6 +1,9 @@
 package ru.ssau.tk.ellapil.lab2.functions;
 
+import ru.ssau.tk.ellapil.lab2.exceptions.InterpolationException;
+
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     private Node head;
@@ -125,6 +128,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     protected double interpolate(double x, int floorIndex) {
         Node left = getNode(floorIndex);
         Node right = left.next;
+        if (!(left.x < x && x < right.x)) {
+            throw new InterpolationException();
+        }
         return super.interpolate(x, left.x, right.x, left.y, right.y);
     }
 
@@ -141,10 +147,35 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public Iterator<Point> iterator() {
-        throw new UnsupportedOperationException();
+        var iterator = new Iterator<Point>() {
+            Node node = head;
+
+            @Override
+            public boolean hasNext() {
+                if (node == null) {
+                    return false;
+                }
+                return true;
+            }
+
+            @Override
+            public Point next() {
+                if (hasNext()) {
+                    Point point = new Point(node.x, node.y);
+                    node = node.next;
+                    if (node == head) {
+                        node = null;
+                    }
+                    return point;
+                } else {
+                    throw new NoSuchElementException();
+                }
+            }
+        };
+        return iterator;
     }
 
-    class Node {
+    protected class Node {
         public Node next;
         public Node prev;
         public double x;
