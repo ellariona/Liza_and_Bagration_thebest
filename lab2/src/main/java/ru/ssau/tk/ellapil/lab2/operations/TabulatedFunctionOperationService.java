@@ -37,16 +37,22 @@ public class TabulatedFunctionOperationService {
         Point[] bPoints = asPoints(b);
         double[] xValues = new double[a.getCount()];
         double[] yValues = new double[a.getCount()];
-        for (int i = 0; i < a.getCount(); i++)
-        {
-            if (aPoints[i].x != bPoints[i].x)
-            {
+        for (int i = 0; i < a.getCount(); i++) {
+            if (aPoints[i].x != bPoints[i].x) {
                 throw new InconsistentFunctionsException();
             }
             xValues[i] = aPoints[i].x;
             yValues[i] = operation.apply(aPoints[i].y, bPoints[i].y);
         }
         return factory.create(xValues, yValues);
+    }
+
+    public TabulatedFunction sum(TabulatedFunction a, TabulatedFunction b) {
+        return doOperation(a, b, (u, v) -> u + v);
+    }
+
+    public TabulatedFunction subtract(TabulatedFunction a, TabulatedFunction b) {
+        return doOperation(a, b, (u, v) -> u - v);
     }
 
     public TabulatedFunctionFactory getFactory() {
