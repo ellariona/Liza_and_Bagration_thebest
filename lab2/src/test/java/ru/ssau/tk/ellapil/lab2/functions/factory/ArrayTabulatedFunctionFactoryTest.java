@@ -11,5 +11,6 @@ public class ArrayTabulatedFunctionFactoryTest {
     public void testCreate() {
         ArrayTabulatedFunctionFactory testClass = new ArrayTabulatedFunctionFactory();
         assertTrue(new ArrayTabulatedFunction(new double[]{2.3, 3.1}, new double[]{2.3, 3.1}).getClass() == (testClass.create(new double[]{2.3, 3.1}, new double[]{2.3, 3.1})).getClass());
+        assertTrue(testClass.create(new double[]{2.3, 3.1}, new double[]{2.3, 3.1}) instanceof ArrayTabulatedFunction);
     }
 }

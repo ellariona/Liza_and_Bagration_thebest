@@ -11,5 +11,6 @@ public class LinkedListTabulatedFunctionFactoryTest {
     public void testCreate() {
         LinkedListTabulatedFunctionFactory testClass = new LinkedListTabulatedFunctionFactory();
         assertTrue(new LinkedListTabulatedFunction(new double[]{2.3, 3.1}, new double[]{2.3, 3.1}).getClass() == (testClass.create(new double[]{2.3, 3.1}, new double[]{2.3, 3.1})).getClass());
+        assertTrue(testClass.create(new double[]{2.3, 3.1}, new double[]{2.3, 3.1}) instanceof LinkedListTabulatedFunction);
     }
 }
