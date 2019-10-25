@@ -145,7 +145,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     public Iterator<Point> iterator() {
         var iterator = new Iterator<Point>() {
-       int i = 0;
+            int i = 0;
 
             @Override
             public boolean hasNext() {

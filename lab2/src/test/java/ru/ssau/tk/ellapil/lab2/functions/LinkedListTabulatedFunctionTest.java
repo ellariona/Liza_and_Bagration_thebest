@@ -92,12 +92,14 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(4 + (8 - 4) / (2.5 - 1.2) * (1.3 - 1.2), listOne.extrapolateLeft(1.3));
     }
 
-   // @Test
-    //void iterator() {
-        //Iterator<Point> iterator;
-        //while (iterator.hasNext()) {
-          //  Point point = iterator.next();
-        //}
-
-    //}
+    @Test
+    void iterator() {
+        Iterator<Point> iterator = listOne.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(listOne.getX(i), point.x, 0.0001);
+            i++;
+        }
+    }
 }
