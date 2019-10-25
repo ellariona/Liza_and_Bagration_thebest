@@ -25,6 +25,14 @@ public class TabulatedFunctionOperationService {
         return points;
     }
 
+    public TabulatedFunctionFactory getFactory() {
+        return factory;
+    }
+
+    public void setFactory(TabulatedFunctionFactory factory) {
+        this.factory = factory;
+    }
+
     private interface BiOperation {
         double apply(double u, double v);
     }
@@ -55,11 +63,5 @@ public class TabulatedFunctionOperationService {
         return doOperation(a, b, (u, v) -> u - v);
     }
 
-    public TabulatedFunctionFactory getFactory() {
-        return factory;
-    }
 
-    public void setFactory(TabulatedFunctionFactory factory) {
-        this.factory = factory;
-    }
 }
