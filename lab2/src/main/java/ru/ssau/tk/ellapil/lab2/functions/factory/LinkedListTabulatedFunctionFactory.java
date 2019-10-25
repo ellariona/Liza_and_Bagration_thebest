@@ -1,6 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.functions.factory;
 
-import ru.ssau.tk.ellapil.lab2.functions.*;
+import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
 
 public class LinkedListTabulatedFunctionFactory implements TabulatedFunctionFactory {
     @Override
