@@ -2,10 +2,12 @@ package ru.ssau.tk.ellapil.lab2.functions;
 
 import ru.ssau.tk.ellapil.lab2.exceptions.InterpolationException;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
+    private static final long serialVersionUID = -7323699546675712181L;
     private Node head;
     protected int count;
 
