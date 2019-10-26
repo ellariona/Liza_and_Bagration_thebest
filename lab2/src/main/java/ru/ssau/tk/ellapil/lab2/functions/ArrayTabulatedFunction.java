@@ -149,7 +149,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
             @Override
             public boolean hasNext() {
-                if (i < count) {
+                if (i > count-1) {
                     return false;
                 }
                 return true;
@@ -161,7 +161,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
                     if (i == count) {
                         throw new NoSuchElementException();
                     }
-                    return new Point(xValues[i++], yValues[i++]);
+                    return new Point(xValues[i], yValues[i++]);
                 } else {
                     throw new NoSuchElementException();
                 }

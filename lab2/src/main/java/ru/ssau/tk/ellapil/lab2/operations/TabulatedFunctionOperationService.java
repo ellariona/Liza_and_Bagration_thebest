@@ -1,8 +1,10 @@
 package ru.ssau.tk.ellapil.lab2.operations;
 
 import ru.ssau.tk.ellapil.lab2.exceptions.InconsistentFunctionsException;
+import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.Point;
 import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 
 public class TabulatedFunctionOperationService {
@@ -13,7 +15,7 @@ public class TabulatedFunctionOperationService {
     }
 
     TabulatedFunctionOperationService() {
-        factory = ((xValues, yValues) -> null); //идея, спасибо, конечно, за идею, но как оно работает?
+        factory = new ArrayTabulatedFunctionFactory();
     }
 
     public static Point[] asPoints(TabulatedFunction tabulatedFunction) {

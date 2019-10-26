@@ -20,6 +20,9 @@ public class TabulatedFunctionOperationServiceTest {
 
     @Test
     public void testAsPoints() {
+        int i = 0;
+       // for ()
+        {}
     }
 
     @Test
