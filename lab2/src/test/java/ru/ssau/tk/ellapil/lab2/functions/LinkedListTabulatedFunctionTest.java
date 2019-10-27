@@ -98,8 +98,11 @@ public class LinkedListTabulatedFunctionTest {
         int i = 0;
         while (iterator.hasNext()) {
             Point point = iterator.next();
-            assertEquals(listOne.getX(i), point.x, 0.0001);
-            i++;
+            assertEquals(listOne.getX(i++), point.x, 0.0001);
+        }
+        i=0;
+        for (Point point : listOne){
+            assertEquals(listOne.getX(i++), point.x, 0.0001);
         }
     }
 }

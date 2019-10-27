@@ -14,11 +14,11 @@ public class TabulatedFunctionFileInputStream {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println(FunctionsIO.readTabulatedFunction(reader, new LinkedListTabulatedFunctionFactory()).toString());
-        } catch (IOException e) {
-            e.printStackTrace();
+       // try {
+       //     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        //    System.out.println(FunctionsIO.readTabulatedFunction(reader, new LinkedListTabulatedFunctionFactory()).toString());
+      //  } catch (IOException e) {
+      //      e.printStackTrace();
         }
-    }
+  //  }
 }
