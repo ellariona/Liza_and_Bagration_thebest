@@ -34,7 +34,7 @@ final class FunctionsIO {
         out.flush();
     }
 
-    static TabulatedFunction readTabulatedFunction(BufferedReader inputStream, TabulatedFunctionFactory factory) throws IOException {
+    static TabulatedFunction readTabulatedFunction(BufferedInputStream inputStream, TabulatedFunctionFactory factory) throws IOException {
         DataInputStream in = new DataInputStream(inputStream);
         int length = in.readInt();
         double[] xValues = new double[length];
