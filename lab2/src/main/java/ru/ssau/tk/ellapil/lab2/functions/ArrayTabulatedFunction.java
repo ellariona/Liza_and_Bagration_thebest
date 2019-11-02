@@ -3,12 +3,14 @@ package ru.ssau.tk.ellapil.lab2.functions;
 import com.sun.jdi.InternalException;
 import ru.ssau.tk.ellapil.lab2.exceptions.InterpolationException;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
+    private static final long serialVersionUID = 7689935679985602927L;
     private double[] xValues;
     private double[] yValues;
     private int count;

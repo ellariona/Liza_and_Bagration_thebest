@@ -5,6 +5,9 @@ import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 
 import java.io.*;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
 
 final class FunctionsIO {
     private FunctionsIO() {
@@ -50,4 +53,34 @@ final class FunctionsIO {
         ObjectInputStream stream1 = new ObjectInputStream(stream);
         return (TabulatedFunction) stream1.readObject();
     }
+
+    static TabulatedFunction readTabulatedFunction(BufferedReader reader, TabulatedFunctionFactory factory) throws IOException, ParseException {
+        int count;
+        try {
+            count = Integer.parseInt(reader.readLine());
+        } catch (NumberFormatException | IOException exceed) {
+            throw new IOException(exceed);
+        }
+        double[] xValues = new double[count];
+        double[] yValues = new double[count];
+        NumberFormat formatter = NumberFormat.getInstance(Locale.forLanguageTag("ru"));
+        for (int i = 0; i <= count; i++) {
+            String valString = reader.readLine();
+            try {
+                xValues[i] = formatter.parse(valString.split(" ")[0]).doubleValue();
+                yValues[i] = formatter.parse(valString.split(" ")[1]).doubleValue();
+            } catch (ParseException parse) {
+                throw new IOException(parse);
+            }
+
+        }
+        return factory.create(xValues, yValues);
+    }
+
+    void serialize(BufferedOutputStream stream, TabulatedFunction function) throws IOException {
+        ObjectOutputStream outputs = new ObjectOutputStream(stream);
+        outputs.writeObject(function);
+        outputs.flush();
+    }
 }
+
