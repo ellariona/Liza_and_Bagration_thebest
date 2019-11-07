@@ -77,7 +77,7 @@ final class FunctionsIO {
         return factory.create(xValues, yValues);
     }
 
-    void serialize(BufferedOutputStream stream, TabulatedFunction function) throws IOException {
+    static void serialize(BufferedOutputStream stream, TabulatedFunction function) throws IOException {
         ObjectOutputStream outputs = new ObjectOutputStream(stream);
         outputs.writeObject(function);
         outputs.flush();

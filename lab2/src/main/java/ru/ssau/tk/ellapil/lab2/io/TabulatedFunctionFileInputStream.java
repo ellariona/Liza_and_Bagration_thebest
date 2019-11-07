@@ -5,6 +5,7 @@ import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.LinkedListTabulatedFunctionFactory;
 
 import java.io.*;
+import java.text.ParseException;
 
 public class TabulatedFunctionFileInputStream {
     public static void main(String[] args) {
@@ -14,11 +15,11 @@ public class TabulatedFunctionFileInputStream {
         } catch (IOException e) {
             e.printStackTrace();
         }
-       // try {
-       //     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        //    System.out.println(FunctionsIO.readTabulatedFunction(reader, new LinkedListTabulatedFunctionFactory()).toString());
-      //  } catch (IOException e) {
-      //      e.printStackTrace();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println(FunctionsIO.readTabulatedFunction(reader, new LinkedListTabulatedFunctionFactory()).toString());
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
         }
-  //  }
+    }
 }
