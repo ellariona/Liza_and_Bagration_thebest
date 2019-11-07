@@ -151,7 +151,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
             @Override
             public boolean hasNext() {
-                if (i > count-1) {
+                if (i > count - 1) {
                     return false;
                 }
                 return true;

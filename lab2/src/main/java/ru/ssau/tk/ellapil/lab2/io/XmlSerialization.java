@@ -8,19 +8,18 @@ import java.io.*;
 public class XmlSerialization {
     private static FunctionsIO FunctionIO;
 
-    public static void main(String[] args)
-        {
-            ArrayTabulatedFunction function = new ArrayTabulatedFunction(new ExpFunction(), 0, 10, 11);
-            try (BufferedWriter outputStream = new BufferedWriter(new FileWriter("output/array_function.xml"))) {
-                FunctionsIO.serializeXml(outputStream, function);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try (BufferedReader inputStream = new BufferedReader(new FileReader("output/array_function.xml"))) {
-                System.out.println(FunctionsIO.deserializeXml(inputStream).toString());
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
+    public static void main(String[] args) {
+        ArrayTabulatedFunction function = new ArrayTabulatedFunction(new ExpFunction(), 0, 10, 11);
+        try (BufferedWriter outputStream = new BufferedWriter(new FileWriter("output/array_function.xml"))) {
+            FunctionsIO.serializeXml(outputStream, function);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        try (BufferedReader inputStream = new BufferedReader(new FileReader("output/array_function.xml"))) {
+            System.out.println(FunctionsIO.deserializeXml(inputStream).toString());
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
 
 }
