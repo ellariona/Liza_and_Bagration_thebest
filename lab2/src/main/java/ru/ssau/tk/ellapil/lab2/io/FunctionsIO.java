@@ -1,5 +1,7 @@
 package ru.ssau.tk.ellapil.lab2.io;
 
+import com.thoughtworks.xstream.XStream;
+import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.Point;
 import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
@@ -81,6 +83,18 @@ final class FunctionsIO {
         ObjectOutputStream outputs = new ObjectOutputStream(stream);
         outputs.writeObject(function);
         outputs.flush();
+    }
+
+    public static void serializeXml(BufferedWriter writer, ArrayTabulatedFunction function) throws IOException {
+        XStream stream = new XStream();
+        stream.toXML(function, writer);
+        writer.flush();
+    }
+
+    public static ArrayTabulatedFunction deserializeXml(BufferedReader reader) {
+        XStream stream = new XStream();
+        Object function = stream.fromXML(reader);
+        return (ArrayTabulatedFunction) function;
     }
 }
 
