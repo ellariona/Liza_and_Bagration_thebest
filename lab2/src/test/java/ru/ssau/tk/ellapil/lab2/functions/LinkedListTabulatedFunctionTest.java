@@ -115,4 +115,10 @@ public class LinkedListTabulatedFunctionTest {
             assertEquals(listTwo.getX(i++), point.x, 0.0001);
         }
     }
+
+    @Test
+    public void testApply() {
+        assertEquals(listOne.apply(1.2),4,0.0001);
+        assertEquals(listOne.apply(1.5),listOne.interpolate(1.5,0),0.0001);
+    }
 }

@@ -1,6 +1,7 @@
 package ru.ssau.tk.ellapil.lab2.functions;
 
 import ru.ssau.tk.ellapil.lab2.exceptions.InterpolationException;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.Serializable;
 import java.util.Iterator;
@@ -124,6 +125,51 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             }
         }
         return count;
+    }
+
+    @Nullable
+    private Node nodeOfX(double x) {
+        Node node=head;
+        for (int i = 0;i<count;i++ ){
+            if(x == node.x){
+                return node;
+            }
+            node=node.next;
+        }
+        return null;
+    }
+
+    private Node floorNodeOfX(double x) throws IllegalArgumentException {
+        Node node = head.next;
+        if (x < head.x) {
+            throw new IllegalArgumentException();
+        }
+        if (x > head.prev.x) {
+            return head.prev;
+        }
+        for (int i = 1; i < count; i++) {
+            if (x < node.x) {
+                return node.prev;
+            }
+            node = node.next;
+        }
+        return head.prev;
+    }
+
+    @Override
+    public double apply(double x) {
+        if (x < leftBound()) {
+            return extrapolateLeft(x);
+        } else if (x > rightBound()) {
+            return extrapolateRight(x);
+        } else if (nodeOfX(x) != null) {
+            return nodeOfX(x).y;
+        } else {
+            Node left = floorNodeOfX(x);
+            Node right = left.next;
+            return super.interpolate(x, left.x, right.x, left.y, right.y);
+        }
+
     }
 
     @Override
