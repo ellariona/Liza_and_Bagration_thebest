@@ -33,7 +33,7 @@ public final class FunctionsIO {
         int count;
         try {
             count = Integer.parseInt(reader.readLine());
-        } catch (NumberFormatException | IOException exceed) {
+        } catch (NumberFormatException exceed) {
             throw new IOException(exceed);
         }
         double[] xValues = new double[count];
