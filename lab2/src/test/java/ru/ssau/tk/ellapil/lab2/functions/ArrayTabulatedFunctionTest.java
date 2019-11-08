@@ -104,6 +104,14 @@ public class ArrayTabulatedFunctionTest {
         });
     }
 
+    @Test
+    public void testInsert() {
+        myFunc.insert(5,10);
+        assertEquals(myFunc.getY(0),10,0.0001);
+        myFunc.insert(6,10);
+        assertEquals(myFunc.getY(1),10,0.0001);
+        assertEquals(myFunc.getY(2),7.19,0.0001);
+    }
 }
 
 

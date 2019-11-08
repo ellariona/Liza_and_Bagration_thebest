@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Serializable,Insertable {
     private static final long serialVersionUID = 7689935679985602927L;
     private double[] xValues;
     private double[] yValues;
@@ -49,6 +49,41 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
                 interim += step;
             }
 
+        }
+    }
+
+    @Override
+    public void insert(double x, double y){
+        if (this.indexOfX(x) != -1){
+            setY(indexOfX(x),y);
+        }
+        else {
+            double[] newXValues = new double[count + 1];
+            double[] newYValues = new double[count + 1];
+            if(floorIndexOfX(x) == 0) {
+                System.arraycopy(xValues, 0, newXValues, 1, count);
+                System.arraycopy(yValues, 0, newYValues, 1, count);
+                newXValues[0] = x;
+                newYValues[0] = y;
+            }
+            if(floorIndexOfX(x) == count) {
+                System.arraycopy(xValues, 0, newXValues, 0, count);
+                System.arraycopy(yValues, 0, newYValues, 0, count);
+                newXValues[count + 1] = x;
+                newYValues[count + 1] = y;
+            }
+            else{
+                int i = floorIndexOfX(x);
+                System.arraycopy(xValues, 0, newXValues, 0, i + 1);
+                System.arraycopy(xValues, i + 1, newXValues, i + 2, count - i - 1);
+                newXValues[i + 1] = x;
+                System.arraycopy(yValues, 0, newYValues, 0, i + 1);
+                System.arraycopy(yValues, i + 1, newYValues, i + 2, count - i - 1);
+                newYValues[i + 1] = y;
+            }
+            count++;
+            this.xValues = newXValues;
+            this.yValues = newYValues;
         }
     }
 
