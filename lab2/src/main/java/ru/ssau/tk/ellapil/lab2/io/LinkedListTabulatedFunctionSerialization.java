@@ -12,7 +12,7 @@ import java.io.*;
 
 public class LinkedListTabulatedFunctionSerialization {
     public static void main(String[] args) {
-        LinkedListTabulatedFunction function = new LinkedListTabulatedFunction(new SqrFunction(), 0, 10, 11);
+        TabulatedFunction function = new LinkedListTabulatedFunction(new SqrFunction(), 0, 10, 11);
         TabulatedDifferentialOperator differentialOperator = new TabulatedDifferentialOperator(new LinkedListTabulatedFunctionFactory());
         TabulatedFunction firstDerive = differentialOperator.derive(function);
         TabulatedFunction secondDerive = differentialOperator.derive(firstDerive);

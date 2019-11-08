@@ -11,7 +11,7 @@ import java.io.*;
 
 public class ArrayTabulatedFunctionSerialization {
     public static void main(String[] args) throws FileNotFoundException {
-        ArrayTabulatedFunction arrayTabulatedFunction = new ArrayTabulatedFunction(new LogFunction(), 0, 10, 11);
+        TabulatedFunction arrayTabulatedFunction = new ArrayTabulatedFunction(new LogFunction(), 0, 10, 11);
         TabulatedDifferentialOperator differentialOperator = new TabulatedDifferentialOperator(new ArrayTabulatedFunctionFactory());
         TabulatedFunction firstDerivative = differentialOperator.derive(arrayTabulatedFunction);
         TabulatedFunction secondDerivative = differentialOperator.derive(firstDerivative);
