@@ -37,6 +37,7 @@ public class TabulatedFunctionOperationServiceTest {
 
     @Test
     public void testSetFactory() {
+        assertTrue(new TabulatedFunctionOperationService().getFactory() instanceof TabulatedFunctionFactory);
         TabulatedFunctionOperationService tabulatedFunctionOperationService = new TabulatedFunctionOperationService(new LinkedListTabulatedFunctionFactory());
         tabulatedFunctionOperationService.setFactory(new LinkedListTabulatedFunctionFactory());
         assertTrue(tabulatedFunctionOperationService.getFactory() instanceof LinkedListTabulatedFunctionFactory);
