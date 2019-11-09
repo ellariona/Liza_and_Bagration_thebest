@@ -22,24 +22,15 @@ public final class FunctionsIO {
         for (Point point : function) {
             printWriter.printf("%f %f\n", point.x, point.y);
         }
-        try {
-            writer.flush();
-        } catch (IOException value) {
-            value.printStackTrace();
-        }
+        writer.flush();
     }
 
-    public static TabulatedFunction readTabulatedFunction(BufferedReader reader, TabulatedFunctionFactory factory) throws IOException, ParseException {
-        int count;
-        try {
-            count = Integer.parseInt(reader.readLine());
-        } catch (NumberFormatException exceed) {
-            throw new IOException(exceed);
-        }
+    public static TabulatedFunction readTabulatedFunction(BufferedReader reader, TabulatedFunctionFactory factory) throws IOException, NumberFormatException {
+        int count = Integer.parseInt(reader.readLine());
         double[] xValues = new double[count];
         double[] yValues = new double[count];
         NumberFormat formatter = NumberFormat.getInstance(Locale.forLanguageTag("ru"));
-        for (int i = 0; i <= count; i++) {
+        for (int i = 0; i < count; i++) {
             String valString = reader.readLine();
             try {
                 xValues[i] = formatter.parse(valString.split(" ")[0]).doubleValue();
@@ -47,7 +38,6 @@ public final class FunctionsIO {
             } catch (ParseException parse) {
                 throw new IOException(parse);
             }
-
         }
         return factory.create(xValues, yValues);
     }

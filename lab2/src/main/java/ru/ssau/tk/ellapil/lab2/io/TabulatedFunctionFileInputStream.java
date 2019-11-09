@@ -17,7 +17,7 @@ public class TabulatedFunctionFileInputStream {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println(FunctionsIO.readTabulatedFunction(reader, new LinkedListTabulatedFunctionFactory()).toString());
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

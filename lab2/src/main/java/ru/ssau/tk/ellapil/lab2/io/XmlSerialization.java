@@ -10,9 +10,9 @@ public class XmlSerialization {
     private static FunctionsIO FunctionIO;
 
     public static void main(String[] args) {
-        TabulatedFunction function = new ArrayTabulatedFunction(new ExpFunction(), 0, 10, 11);
+        ArrayTabulatedFunction function = new ArrayTabulatedFunction(new ExpFunction(), 0, 10, 11);
         try (BufferedWriter outputStream = new BufferedWriter(new FileWriter("output/array_function.xml"))) {
-            FunctionsIO.serializeXml(outputStream, (ArrayTabulatedFunction) function);
+            FunctionsIO.serializeXml(outputStream, function);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -3,6 +3,7 @@ package ru.ssau.tk.ellapil.lab2.functions;
 import org.testng.annotations.Test;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.testng.Assert.*;
 
@@ -100,6 +101,10 @@ public class LinkedListTabulatedFunctionTest {
             Point point = iterator.next();
             assertEquals(listOne.getX(i++), point.x, 0.0001);
         }
+        Iterator<Point> finalIterator = iterator;
+        assertThrows(NoSuchElementException.class, () -> {
+            Point point = finalIterator.next();
+        });
         i = 0;
         for (Point point : listOne) {
             assertEquals(listOne.getX(i++), point.x, 0.0001);
@@ -118,7 +123,7 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     public void testApply() {
-        assertEquals(listOne.apply(1.2),4,0.0001);
-        assertEquals(listOne.apply(1.5),listOne.interpolate(1.5,0),0.0001);
+        assertEquals(listOne.apply(1.2), 4, 0.0001);
+        assertEquals(listOne.apply(1.5), listOne.interpolate(1.5, 0), 0.0001);
     }
 }

@@ -12,17 +12,18 @@ public class TabulatedFunctionFileReader {
     public static void main(String[] args) {
         try (BufferedReader reader = new BufferedReader(new FileReader("input/function.txt"))) {
             System.out.println(FunctionsIO.readTabulatedFunction(reader, new LinkedListTabulatedFunctionFactory()).toString());
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader("input/function.txt"));
             System.out.println(FunctionsIO.readTabulatedFunction(reader, new ArrayTabulatedFunctionFactory()).toString());
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
             try {
-                assert reader != null;
-                reader.close();
+                if (reader != null) {
+                    reader.close();
+                }
             } catch (IOException exec) {
                 exec.printStackTrace();
             }

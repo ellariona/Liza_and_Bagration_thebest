@@ -7,6 +7,9 @@ import static org.testng.Assert.*;
 import ru.ssau.tk.ellapil.lab2.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.ellapil.lab2.exceptions.DifferentLengthOfArraysException;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class ArrayTabulatedFunctionTest {
     private double[] xValues = {5, 6.7, 13};
     private double[] yValues = {7, 7.19, 15};
@@ -106,11 +109,39 @@ public class ArrayTabulatedFunctionTest {
 
     @Test
     public void testInsert() {
-        myFunc.insert(5,10);
-        assertEquals(myFunc.getY(0),10,0.0001);
-        myFunc.insert(6,10);
-        assertEquals(myFunc.getY(1),10,0.0001);
-        assertEquals(myFunc.getY(2),7.19,0.0001);
+        myFunc.insert(5, 10);
+        assertEquals(myFunc.getY(0), 10, 0.0001);
+        myFunc.insert(6, 10);
+        assertEquals(myFunc.getY(1), 10, 0.0001);
+        assertEquals(myFunc.getY(2), 7.19, 0.0001);
+    }
+
+    @Test
+    public void testIterator() {
+        Iterator<Point> iterator = myFunc.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(myFunc.getX(i++), point.x, 0.0001);
+        }
+        Iterator<Point> finalIterator = iterator;
+        assertThrows(NoSuchElementException.class, () -> {
+            Point point = finalIterator.next();
+        });
+        i = 0;
+        for (Point point : myFunc) {
+            assertEquals(myFunc.getX(i++), point.x, 0.0001);
+        }
+        iterator = myFunc2.iterator();
+        i = 0;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(myFunc2.getX(i++), point.x, 0.0001);
+        }
+        i = 0;
+        for (Point point : myFunc2) {
+            assertEquals(myFunc2.getX(i++), point.x, 0.0001);
+        }
     }
 }
 

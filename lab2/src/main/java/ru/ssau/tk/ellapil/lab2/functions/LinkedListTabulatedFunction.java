@@ -1,7 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.functions;
 
 import ru.ssau.tk.ellapil.lab2.exceptions.InterpolationException;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.Serializable;
 import java.util.Iterator;
@@ -75,6 +74,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     private Node getNode(int index) {
         Node finding = head;
+        if (index < 0 || index >= count) {
+            throw new IndexOutOfBoundsException();
+        }
         for (int i = 0; i < index; i++) {
             finding = finding.next;
         }
@@ -127,17 +129,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return count;
     }
 
-    @Nullable
-    private Node nodeOfX(double x) {
-        Node node=head;
-        for (int i = 0;i<count;i++ ){
-            if(x == node.x){
-                return node;
-            }
-            node=node.next;
-        }
-        return null;
-    }
 
     private Node floorNodeOfX(double x) throws IllegalArgumentException {
         Node node = head.next;
@@ -156,27 +147,12 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return head.prev;
     }
 
-    @Override
-    public double apply(double x) {
-        if (x < leftBound()) {
-            return extrapolateLeft(x);
-        } else if (x > rightBound()) {
-            return extrapolateRight(x);
-        } else if (nodeOfX(x) != null) {
-            return nodeOfX(x).y;
-        } else {
-            Node left = floorNodeOfX(x);
-            Node right = left.next;
-            return super.interpolate(x, left.x, right.x, left.y, right.y);
-        }
-
-    }
 
     @Override
     protected double interpolate(double x, int floorIndex) {
         Node left = getNode(floorIndex);
         Node right = left.next;
-        if (!(left.x < x && x < right.x)) {
+        if (!(left.x <= x && x < right.x)) {
             throw new InterpolationException();
         }
         return super.interpolate(x, left.x, right.x, left.y, right.y);
@@ -223,7 +199,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return iterator;
     }
 
-    protected class Node {
+    protected static class Node implements Serializable {
+        private static final long serialVersionUID = -1757180215118870655L;
         public Node next;
         public Node prev;
         public double x;
