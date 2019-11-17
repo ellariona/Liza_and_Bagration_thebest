@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable, Removable {
     private static final long serialVersionUID = -7323699546675712181L;
     private Node head;
     protected int count;
@@ -223,6 +223,19 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             }
         };
         return iterator;
+    }
+
+    @Override
+    public void remove(int index) throws IllegalArgumentException {
+        if (index < 0 || index > count) {
+            throw new IllegalArgumentException("Index is out of bounds");
+        }
+        Node node = getNode(index);
+        Node prev = node.prev;
+        Node next = node.next;
+        prev.next = next;
+        next.prev = prev;
+        count--;
     }
 
     protected static class Node implements Serializable {
