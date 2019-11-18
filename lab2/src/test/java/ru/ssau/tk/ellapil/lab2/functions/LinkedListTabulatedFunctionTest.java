@@ -130,6 +130,6 @@ public class LinkedListTabulatedFunctionTest {
     @Test
     public void testRemove() {
         listOne.remove(2);
-        assertEquals(listOne.getX(2), 4.8);
+        assertEquals(listOne.getX(2), 4.8, 0.0001);
     }
 }
