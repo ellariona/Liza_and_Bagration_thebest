@@ -3,8 +3,10 @@ package ru.ssau.tk.ellapil.lab2.concurrent;
 import org.jetbrains.annotations.NotNull;
 import ru.ssau.tk.ellapil.lab2.functions.Point;
 import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.operations.TabulatedFunctionOperationService;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class SynchronizedTabulatedFunction implements TabulatedFunction {
     TabulatedFunction function;
@@ -73,7 +75,24 @@ public class SynchronizedTabulatedFunction implements TabulatedFunction {
     @Override
     public Iterator<Point> iterator() {
         synchronized (function) {
-            return function.iterator();
+            Point[] copy = TabulatedFunctionOperationService.asPoints(function);
+            return new Iterator<>() {
+                int i = 0;
+
+                @Override
+                public boolean hasNext() {
+                    return i != copy.length;
+                }
+
+                @Override
+                public Point next() {
+                    if (!hasNext()) {
+                        throw new NoSuchElementException();
+                    } else {
+                        return new Point(copy[i].x, copy[i++].y);
+                    }
+                }
+            };
         }
     }
 

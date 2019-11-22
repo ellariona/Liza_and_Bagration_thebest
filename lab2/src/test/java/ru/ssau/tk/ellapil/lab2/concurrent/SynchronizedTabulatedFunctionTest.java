@@ -3,6 +3,7 @@ package ru.ssau.tk.ellapil.lab2.concurrent;
 import org.testng.annotations.Test;
 import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.functions.Point;
 import ru.ssau.tk.ellapil.lab2.functions.SqrFunction;
 
 import static org.testng.Assert.*;
@@ -65,6 +66,16 @@ public class SynchronizedTabulatedFunctionTest {
 
     @Test
     public void testIterator() {
+        var iteratorArr =syncArray.iterator();
+        int i=0;
+        while (iteratorArr.hasNext()) {
+            Point point = iteratorArr.next();
+            assertEquals(syncArray.getX(i++), point.x, 0.0001);
+        }
+        i=0;
+        for (Point point : syncArray) {
+            assertEquals(syncArray.getX(i++), point.x, 0.0001);
+        }
     }
 
     @Test
