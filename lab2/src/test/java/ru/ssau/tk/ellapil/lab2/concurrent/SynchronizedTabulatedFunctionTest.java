@@ -76,6 +76,16 @@ public class SynchronizedTabulatedFunctionTest {
         for (Point point : syncArray) {
             assertEquals(syncArray.getX(i++), point.x, 0.0001);
         }
+        var iteratorList =syncList.iterator();
+        i=0;
+        while (iteratorList.hasNext()) {
+            Point point = iteratorList.next();
+            assertEquals(syncList.getX(i++), point.x, 0.0001);
+        }
+        i=0;
+        for (Point point : syncList) {
+            assertEquals(syncList.getX(i++), point.x, 0.0001);
+        }
     }
 
     @Test
