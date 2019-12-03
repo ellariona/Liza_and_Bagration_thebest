@@ -4,6 +4,7 @@ import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
 
 public class MultiplyingTask implements Runnable {
     private TabulatedFunction tabulatedFunction;
+    private boolean isCompleted;
 
     public MultiplyingTask(TabulatedFunction tabulatedFunction) {
         this.tabulatedFunction = tabulatedFunction;
@@ -15,6 +16,10 @@ public class MultiplyingTask implements Runnable {
             tabulatedFunction.setY(i, 2 * tabulatedFunction.getY(i));
         }
         System.out.println("The " + Thread.currentThread().getName() + " has completed execution");
+        isCompleted = true;
+    }
+    public boolean isCompleted() {
+        return isCompleted;
     }
 }
 
