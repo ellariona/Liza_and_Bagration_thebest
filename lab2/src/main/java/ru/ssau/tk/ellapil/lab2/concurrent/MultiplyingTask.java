@@ -13,7 +13,9 @@ public class MultiplyingTask implements Runnable {
     @Override
     public void run() {
         for (int i = 0; i < tabulatedFunction.getCount(); i++) {
-            tabulatedFunction.setY(i, 2 * tabulatedFunction.getY(i));
+            synchronized (tabulatedFunction) {
+                tabulatedFunction.setY(i, 2 * tabulatedFunction.getY(i));
+            }
         }
         System.out.println("The " + Thread.currentThread().getName() + " has completed execution");
         isCompleted = true;
