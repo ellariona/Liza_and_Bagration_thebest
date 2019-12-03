@@ -3,8 +3,11 @@ package ru.ssau.tk.ellapil.lab2.operations;
 import org.testng.annotations.Test;
 import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.functions.Point;
+import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.LinkedListTabulatedFunctionFactory;
+import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;

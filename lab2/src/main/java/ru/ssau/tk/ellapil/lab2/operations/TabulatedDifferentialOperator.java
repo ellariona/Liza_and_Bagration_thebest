@@ -1,5 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.operations;
 
+import ru.ssau.tk.ellapil.lab2.concurrent.SynchronizedTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.*;
 import ru.ssau.tk.ellapil.lab2.functions.factory.*;
 
@@ -37,4 +38,12 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
         return factory.create(xValues, yValues);
     }
 
+    public TabulatedFunction deriveSynchronously(TabulatedFunction function) {
+        if (!(function instanceof SynchronizedTabulatedFunction)) {
+            SynchronizedTabulatedFunction synchronizedTabulatedFunction = new SynchronizedTabulatedFunction(function);
+            return synchronizedTabulatedFunction.doSynchronously(this::derive);
+        }
+        return ((SynchronizedTabulatedFunction) function).doSynchronously(this::derive);
+    }
 }
+

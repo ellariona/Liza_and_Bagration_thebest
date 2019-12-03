@@ -1,5 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.concurrent;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
@@ -66,23 +67,23 @@ public class SynchronizedTabulatedFunctionTest {
 
     @Test
     public void testIterator() {
-        var iteratorArr =syncArray.iterator();
-        int i=0;
+        var iteratorArr = syncArray.iterator();
+        int i = 0;
         while (iteratorArr.hasNext()) {
             Point point = iteratorArr.next();
             assertEquals(syncArray.getX(i++), point.x, 0.0001);
         }
-        i=0;
+        i = 0;
         for (Point point : syncArray) {
             assertEquals(syncArray.getX(i++), point.x, 0.0001);
         }
-        var iteratorList =syncList.iterator();
-        i=0;
+        var iteratorList = syncList.iterator();
+        i = 0;
         while (iteratorList.hasNext()) {
             Point point = iteratorList.next();
             assertEquals(syncList.getX(i++), point.x, 0.0001);
         }
-        i=0;
+        i = 0;
         for (Point point : syncList) {
             assertEquals(syncList.getX(i++), point.x, 0.0001);
         }
@@ -92,5 +93,17 @@ public class SynchronizedTabulatedFunctionTest {
     public void testApply() {
         assertEquals(syncArray.apply(2), 4, 0.001);
         assertEquals(syncList.apply(2.5), 8, 0.001);
+    }
+
+    @Test
+    public void testDoSynchronously() {
+        SynchronizedTabulatedFunction testFunction = syncArray;
+        assertEquals((int) syncArray.doSynchronously(SynchronizedTabulatedFunction::getCount), 6);
+        assertEquals(syncArray.doSynchronously(SynchronizedTabulatedFunction::leftBound), 1.);
+        assertEquals(syncArray.doSynchronously(SynchronizedTabulatedFunction::rightBound), 6.);
+        assertNull(syncArray.doSynchronously(x -> {
+            x.setY(1, 2);
+            return null;
+        }));
     }
 }
