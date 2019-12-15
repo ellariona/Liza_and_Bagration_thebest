@@ -20,6 +20,7 @@ public class TabulatedDifferentialOperatorTest {
     double[] yValues = {7, 7.19, 15};
     ArrayTabulatedFunction myFunc = new ArrayTabulatedFunction(xValues, yValues);
 
+
     @Test
     public void testDerive() {
         var diffArray = array.derive(myFunc);
@@ -38,5 +39,13 @@ public class TabulatedDifferentialOperatorTest {
     public void testSetFactory() {
         isArray.setFactory(new LinkedListTabulatedFunctionFactory());
         assertTrue(isArray.getFactory() instanceof LinkedListTabulatedFunctionFactory);
+    }
+
+    @Test
+    public void testDeriveSynchronously() {
+        var diffArray = array.deriveSynchronously(myFunc);
+        assertEquals(diffArray.getY(0), (7.19 - 7) / (6.7 - 5), 0.0001);
+        assertEquals(diffArray.getY(1), (15 - 7.19) / (13 - 6.7), 0.0001);
+        assertEquals(diffArray.getY(2), (15 - 7.19) / (13 - 6.7), 0.0001);
     }
 }

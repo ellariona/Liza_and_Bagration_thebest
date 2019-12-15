@@ -3,7 +3,7 @@ package ru.ssau.tk.ellapil.lab2.concurrent;
 import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
 
 public class MultiplyingTask implements Runnable {
-    private TabulatedFunction tabulatedFunction;
+    private final TabulatedFunction tabulatedFunction;
     private boolean isCompleted;
 
     public MultiplyingTask(TabulatedFunction tabulatedFunction) {
