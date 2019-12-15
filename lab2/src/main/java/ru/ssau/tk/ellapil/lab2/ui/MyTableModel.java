@@ -44,11 +44,9 @@ public class MyTableModel extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        if (columnIndex == INDEX_COLUMN_NUMBER) {
-            return;
-        } else if (columnIndex == X_COLUMN_NUMBER) {
+        if (columnIndex == X_COLUMN_NUMBER) {
             xValues.set(rowIndex, (Double) aValue);
-        } else {
+        } else if (columnIndex == Y_COLUMN_NUMBER) {
             yValues.set(rowIndex, (Double) aValue);
         }
     }

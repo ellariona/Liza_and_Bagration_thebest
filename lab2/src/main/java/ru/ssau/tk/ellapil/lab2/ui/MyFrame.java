@@ -58,7 +58,20 @@ public class MyFrame extends JFrame {
         inputButton.addActionListener(event -> {
             try {
                 int count = Integer.parseInt(countField.getText());
-                table = new JTable(new MyTableModel(new ArrayList<>(count), new ArrayList<>(count)));
+                if (tableModel.getRowCount() > 0) {
+                    int n = tableModel.getRowCount();
+                    for (int i = 0; i < n; i++) {
+                        xValues.remove(n - i - 1);
+                        yValues.remove(n - i - 1);
+                        tableModel.fireTableDataChanged();
+                    }
+                }
+                //table = new JTable(new MyTableModel(new ArrayList<>(count), new ArrayList<>(count)));
+                for (int i = 0; i < count; i++) {
+                    xValues.add(0.);
+                    yValues.add(0.);
+                    tableModel.fireTableDataChanged();
+                }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getStackTrace());
             }
