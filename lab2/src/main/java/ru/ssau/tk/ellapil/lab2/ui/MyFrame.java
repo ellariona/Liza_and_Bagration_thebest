@@ -1,22 +1,30 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
+import ru.ssau.tk.ellapil.lab2.exceptions.ArrayIsNotSortedException;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class MyFrame extends JFrame {
     private static final int SPACING_SIZE = 10;
     private JFrame jFrame = new JFrame("This is frame");
-    List<Double> xValues = new ArrayList<>();
-    List<Double> yValues = new ArrayList<>();
+    List<String> xValues = new ArrayList<>();
+    List<String> yValues = new ArrayList<>();
     AbstractTableModel tableModel = new MyTableModel(xValues, yValues);
     JTable table = new JTable(tableModel);
     private JLabel label = new JLabel("Input number of points:");
     private JTextField countField = new JTextField();
     private JButton inputButton = new JButton("Input");
+    private JButton commitButton = new JButton("Commit");
+    //private LinkedHashMap<Double, Double> map = new LinkedHashMap<>();
+    List<Double> xValuesDouble = new ArrayList<>();
+    List<Double> yValuesDouble = new ArrayList<>();
 
     public static void main(String[] args) {
         MyFrame app = new MyFrame();
@@ -44,6 +52,7 @@ public class MyFrame extends JFrame {
                         .addComponent(countField)
                         .addComponent(inputButton))
                 .addComponent(tableScrollPane)
+                .addComponent(commitButton)
         );
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -51,6 +60,7 @@ public class MyFrame extends JFrame {
                         .addComponent(countField)
                         .addComponent(inputButton))
                 .addComponent(tableScrollPane)
+                .addComponent(commitButton)
         );
     }
 
@@ -66,10 +76,9 @@ public class MyFrame extends JFrame {
                         tableModel.fireTableDataChanged();
                     }
                 }
-                //table = new JTable(new MyTableModel(new ArrayList<>(count), new ArrayList<>(count)));
                 for (int i = 0; i < count; i++) {
-                    xValues.add(0.);
-                    yValues.add(0.);
+                    xValues.add("");
+                    yValues.add("");
                     tableModel.fireTableDataChanged();
                 }
             } catch (Exception e) {
@@ -95,6 +104,29 @@ public class MyFrame extends JFrame {
 
             private void onChanged() {
                 inputButton.setEnabled(!countField.getText().isEmpty());
+            }
+        });
+
+        commitButton.addActionListener(event -> {
+            try {
+                if(xValuesDouble.size()>0){
+                    xValuesDouble.clear();
+                    yValuesDouble.clear();
+                }
+                int n = tableModel.getRowCount();
+                //map = new LinkedHashMap<Double, Double>(n);
+                for (int i = 0; i < n; i++) {
+                    xValuesDouble.add(Double.parseDouble(tableModel.getValueAt(i, 1).toString()));
+                    yValuesDouble.add(Double.parseDouble(tableModel.getValueAt(i, 2).toString()));
+                    //map.put(Double.parseDouble(tableModel.getValueAt(i, 1).toString()), Double.parseDouble(tableModel.getValueAt(i, 2).toString()));
+                }
+                for (int i = 1; i < xValuesDouble.size(); i++) {
+                    if (xValuesDouble.get(i - 1) > xValuesDouble.get(i)) {
+                        throw new ArrayIsNotSortedException();
+                    }
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getStackTrace());
             }
         });
     }
