@@ -1,19 +1,18 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
 
-import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import java.awt.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class MyTableModel extends AbstractTableModel {
     private static final int INDEX_COLUMN_NUMBER = 0;
     private static final int X_COLUMN_NUMBER = 1;
     private static final int Y_COLUMN_NUMBER = 2;
-    private List<String> xValues;
-    private List<String> yValues;
+    private List<Double> xValues;
+    private List<Double> yValues;
 
-    public MyTableModel(List<String> xValues, List<String> yValues) {
+    public MyTableModel(List<Double> xValues, List<Double> yValues) {
         this.xValues = xValues;
         this.yValues = yValues;
     }
@@ -43,11 +42,11 @@ public class MyTableModel extends AbstractTableModel {
 
 
     @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) throws NumberFormatException {
         if (columnIndex == X_COLUMN_NUMBER) {
-            xValues.set(rowIndex, String.valueOf(aValue));
+            xValues.set(rowIndex, Double.valueOf(aValue.toString()));
         } else if (columnIndex == Y_COLUMN_NUMBER) {
-            yValues.set(rowIndex, String.valueOf(aValue));
+            yValues.set(rowIndex, Double.valueOf(aValue.toString()));
         }
     }
 

@@ -1,6 +1,7 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
 import ru.ssau.tk.ellapil.lab2.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -11,16 +12,14 @@ import java.util.List;
 
 public class MyFrame extends JFrame {
     private static final int SPACING_SIZE = 10;
-    List<String> xValues = new ArrayList<>();
-    List<String> yValues = new ArrayList<>();
+    List<Double> xValues = new ArrayList<>();
+    List<Double> yValues = new ArrayList<>();
     AbstractTableModel tableModel = new MyTableModel(xValues, yValues);
     JTable table = new JTable(tableModel);
     private JLabel label = new JLabel("Input number of points:");
     private JTextField countField = new JTextField();
     private JButton inputButton = new JButton("Input");
     private JButton commitButton = new JButton("Commit");
-    List<Double> xValuesDouble = new ArrayList<>();
-    List<Double> yValuesDouble = new ArrayList<>();
 
     public static void main(String[] args) {
         MyFrame app = new MyFrame();
@@ -82,8 +81,8 @@ public class MyFrame extends JFrame {
                 int count = Integer.parseInt(countField.getText());
                 clearTable(tableModel.getRowCount());
                 for (int i = 0; i < count; i++) {
-                    xValues.add("");
-                    yValues.add("");
+                    xValues.add(0.);
+                    yValues.add(0.);
                     tableModel.fireTableDataChanged();
                 }
                 if (tableModel.getRowCount() > 1) {
@@ -98,20 +97,18 @@ public class MyFrame extends JFrame {
     public void addListenerForCommitButton() {
         commitButton.addActionListener(event -> {
             try {
-                if (xValuesDouble.size() > 0) {
-                    xValuesDouble.clear();
-                    yValuesDouble.clear();
-                }
-                int n = tableModel.getRowCount();
-                for (int i = 0; i < n; i++) {
-                    xValuesDouble.add(Double.parseDouble(tableModel.getValueAt(i, 1).toString()));
-                    yValuesDouble.add(Double.parseDouble(tableModel.getValueAt(i, 2).toString()));
-                }
-                for (int i = 1; i < xValuesDouble.size(); i++) {
-                    if (xValuesDouble.get(i - 1) > xValuesDouble.get(i)) {
+                double[] x = new double[xValues.size()];
+                double[] y = new double[xValues.size()];
+                x[0] = xValues.get(0);
+                y[0] = yValues.get(0);
+                for (int i = 1; i < xValues.size(); i++) {
+                    if (xValues.get(i - 1) > xValues.get(i)) {
                         throw new ArrayIsNotSortedException();
                     }
+                    x[i] = xValues.get(i);
+                    y[i] = yValues.get(i);
                 }
+                LinkedListTabulatedFunction func = new LinkedListTabulatedFunction(x, y);
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
