@@ -20,6 +20,7 @@ public class MultiplyingTask implements Runnable {
         System.out.println("The " + Thread.currentThread().getName() + " has completed execution");
         isCompleted = true;
     }
+
     public boolean isCompleted() {
         return isCompleted;
     }
