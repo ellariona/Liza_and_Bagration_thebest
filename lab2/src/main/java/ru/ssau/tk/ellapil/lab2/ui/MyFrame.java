@@ -92,6 +92,7 @@ public class MyFrame extends JFrame {
                 new ErrorWindow(this, e);
             }
         });
+
     }
 
     public void addListenerForCommitButton() {
