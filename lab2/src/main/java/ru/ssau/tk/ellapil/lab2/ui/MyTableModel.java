@@ -1,9 +1,8 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
 
-import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import java.awt.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class MyTableModel extends AbstractTableModel {
@@ -43,13 +42,19 @@ public class MyTableModel extends AbstractTableModel {
 
 
     @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        if (columnIndex == INDEX_COLUMN_NUMBER) {
-            return;
-        } else if (columnIndex == X_COLUMN_NUMBER) {
-            xValues.set(rowIndex, (Double) aValue);
-        } else {
-            yValues.set(rowIndex, (Double) aValue);
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) throws NumberFormatException {
+        if (columnIndex == X_COLUMN_NUMBER) {
+            try {
+                xValues.set(rowIndex, Double.valueOf(aValue.toString()));
+            } catch (Exception e) {
+                xValues.set(rowIndex, 0.0);
+            }
+        } else if (columnIndex == Y_COLUMN_NUMBER) {
+            try {
+                yValues.set(rowIndex, Double.valueOf(aValue.toString()));
+            } catch (Exception e) {
+                yValues.set(rowIndex, 0.0);
+            }
         }
     }
 
@@ -79,7 +84,5 @@ public class MyTableModel extends AbstractTableModel {
         return super.getColumnName(column);
     }
 
-//  private Container getContentPane() {
-// }
 }
 
