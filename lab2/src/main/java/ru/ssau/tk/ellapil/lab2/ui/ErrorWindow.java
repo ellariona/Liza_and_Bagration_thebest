@@ -7,13 +7,13 @@ import java.awt.*;
 
 public class ErrorWindow {
 
-    //ErrorWindow(Component parent, Exception e) {
-        //showErrorWindow(parent, e);
-    //}
+    ErrorWindow(Component parent, Exception e) {
+        showErrorWindow(parent, e);
+    }
 
     public void showErrorWindow(Component parent, Exception e) {
         String head = generateMessageForException(e);
-        JOptionPane.showMessageDialog(parent, e.getStackTrace(), head, JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(parent, "Error!", head, JOptionPane.ERROR_MESSAGE);
     }
 
     private String generateMessageForException(Exception e) {

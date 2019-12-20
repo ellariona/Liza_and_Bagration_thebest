@@ -60,9 +60,8 @@ public class MyFrame extends JFrame {
                 int count = Integer.parseInt(countField.getText());
                 table = new JTable(new MyTableModel(new ArrayList<>(count), new ArrayList<>(count)));
             } catch (Exception e) {
-                ErrorWindow errorWindow = new ErrorWindow();
-                errorWindow.showErrorWindow(this, e);
-                //JOptionPane.showMessageDialog(this, e.getStackTrace());
+                ErrorWindow errorWindow = new ErrorWindow(this, e);
+                // errorWindow.showErrorWindow(this, e);
             }
         });
 
