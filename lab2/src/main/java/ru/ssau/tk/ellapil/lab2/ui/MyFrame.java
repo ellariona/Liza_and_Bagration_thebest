@@ -22,7 +22,7 @@ public class MyFrame extends JFrame {
     private JButton inputButton = new JButton("Input");
     private JButton commitButton = new JButton("Commit");
 
-    public static void main(String[] args) {
+    public static void main(JFrame args) {
         MyFrame app = new MyFrame();
         app.setVisible(true);
     }

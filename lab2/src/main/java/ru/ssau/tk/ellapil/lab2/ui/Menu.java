@@ -17,17 +17,13 @@ public class Menu extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        Menu window = new Menu();
-        window.setVisible(true);
-    }
-
     public void actionPerformed() {
         inputButton.addActionListener(event -> {
                     try {
-                        MyFrame mainWindow = new MyFrame(frame);
-                        mainWindow.setVisible(true);
-                        frame.setVisible(false);
+                        MyFrame.main(frame);
+                        //MyFrame mainWindow = new MyFrame(frame);
+                        //mainWindow.setVisible(true);
+                        //frame.setVisible(false);
                     } catch (Exception e) {
                         new ErrorWindow(this, e);
                     }
@@ -48,5 +44,10 @@ public class Menu extends JFrame {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(inputButton))
         );
+    }
+
+    public static void main(String[] args) {
+        Menu window = new Menu();
+        window.setVisible(true);
     }
 }
