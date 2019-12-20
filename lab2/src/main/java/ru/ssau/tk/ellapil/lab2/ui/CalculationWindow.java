@@ -1,9 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
-import ru.ssau.tk.ellapil.lab2.functions.AbstractTabulatedFunction;
-import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
-import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
-import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.functions.*;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.operations.TabulatedFunctionOperationService;
 
@@ -80,7 +77,9 @@ public class CalculationWindow extends JFrame {
         panel.add(label);
         panel.add(tableScrollPane);
         panel.add(createByArray);
+        addListenerCreateByTable(createByArray, first);
         panel.add(createByFunc);
+        addListenerCreateByFnc(createByFunc, first);
         panel.add(saveOrOpen);
         addListenerForSaveOrOpen(saveOrOpen, first);
         //panel.add(open);
@@ -129,7 +128,9 @@ public class CalculationWindow extends JFrame {
         panel.add(label);
         panel.add(tableScrollPane);
         panel.add(createByArray);
+        addListenerCreateByTable(createByArray, second);
         panel.add(createByFunc);
+        addListenerCreateByFnc(createByFunc, second);
         panel.add(saveOrOpen);
         addListenerForSaveOrOpen(saveOrOpen, second);
         //panel.add(save);
@@ -261,15 +262,20 @@ public class CalculationWindow extends JFrame {
     public void addListenerCreateByTable(JButton button, TabulatedFunction func) {
         button.addActionListener(event -> {
             try {
-                //MyFrame.main(func);
+                MyFrame.main(func);
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
         });
-        //обращаемся к MyFrame;
     }
 
-    public void addListenerCreateByFnc() {
-        //обращаемся к MathFunctionWindow;
+    public void addListenerCreateByFnc(JButton button, TabulatedFunction func) {
+        button.addActionListener(event -> {
+            try {
+                MathFunctionWindow.main(func);
+            } catch (Exception e) {
+                new ErrorWindow(this, e);
+            }
+        });
     }
 }

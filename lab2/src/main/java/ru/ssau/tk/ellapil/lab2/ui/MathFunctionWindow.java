@@ -17,15 +17,30 @@ public class MathFunctionWindow extends JFrame {
     private JTextField toField = new JTextField();
     private JButton okButton = new JButton("OK");
     private Map<String, MathFunction> nameFunctionMap = new HashMap<>();
-    private TabulatedFunction factory;
+    private TabulatedFunction function;
 
     public static void main(JFrame args) {
         MathFunctionWindow app = new MathFunctionWindow();
         app.setVisible(true);
     }
 
+    public static void main(TabulatedFunction function) {
+        MathFunctionWindow app = new MathFunctionWindow(function);
+        app.setVisible(true);
+    }
+
+    public MathFunctionWindow(TabulatedFunction function) {
+        super("CreateFunc");
+        this.function = function;
+        this.setBounds(300, 200, 500, 200);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fillMap();
+        compose();
+        addButtonListeners();
+    }
+
     public MathFunctionWindow() {
-        super("Window");
+        super("CreateFunc");
         this.setBounds(300, 200, 500, 200);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fillMap();
@@ -88,7 +103,7 @@ public class MathFunctionWindow extends JFrame {
                 double from = Double.parseDouble(fromField.getText());
                 double to = Double.parseDouble(toField.getText());
                 int count = Integer.parseInt(countField.getText());
-                TabulatedFunction result = new ArrayTabulatedFunction(selectedFunction, from, to, count);
+                function = new ArrayTabulatedFunction(selectedFunction, from, to, count);
             } catch (Exception e) {
                 ErrorWindow errorWindow = new ErrorWindow(this, e);
                 errorWindow.showErrorWindow(this, e);
