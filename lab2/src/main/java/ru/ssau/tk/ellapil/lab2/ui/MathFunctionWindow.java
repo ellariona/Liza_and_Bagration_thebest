@@ -82,12 +82,17 @@ public class MathFunctionWindow extends JFrame {
 
     public void addButtonListeners() {
         okButton.addActionListener(event -> {
-            String func = (String) functionComboBox.getSelectedItem();
-            MathFunction selectedFunction = nameFunctionMap.get(func);
-            double from = Double.parseDouble(fromField.getText());
-            double to = Double.parseDouble(toField.getText());
-            int count = Integer.parseInt(countField.getText());
-            TabulatedFunction result = new ArrayTabulatedFunction(selectedFunction, from, to, count);
+            try {
+                String func = (String) functionComboBox.getSelectedItem();
+                MathFunction selectedFunction = nameFunctionMap.get(func);
+                double from = Double.parseDouble(fromField.getText());
+                double to = Double.parseDouble(toField.getText());
+                int count = Integer.parseInt(countField.getText());
+                TabulatedFunction result = new ArrayTabulatedFunction(selectedFunction, from, to, count);
+            } catch (Exception e) {
+                ErrorWindow errorWindow = new ErrorWindow(this, e);
+                errorWindow.showErrorWindow(this, e);
+            }
         });
     }
 }

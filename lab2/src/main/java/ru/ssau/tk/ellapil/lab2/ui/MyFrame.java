@@ -61,7 +61,7 @@ public class MyFrame extends JFrame {
                 table = new JTable(new MyTableModel(new ArrayList<>(count), new ArrayList<>(count)));
             } catch (Exception e) {
                 ErrorWindow errorWindow = new ErrorWindow(this, e);
-                // errorWindow.showErrorWindow(this, e);
+                errorWindow.showErrorWindow(this, e);
             }
         });
 
