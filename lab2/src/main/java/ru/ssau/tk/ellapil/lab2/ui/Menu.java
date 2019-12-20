@@ -5,6 +5,7 @@ import javax.swing.*;
 public class Menu extends JFrame {
     private JFrame frame;
     private JButton okButton = new JButton("Start");
+    private JButton inputButton = new JButton("OneOkno");
 
     public Menu() {
         setTitle("Menu");
@@ -20,12 +21,13 @@ public class Menu extends JFrame {
         window.setVisible(true);
     }
 
-
     public void actionPerformed() {
-        MyFrame mainWindow = new MyFrame(frame);
-        mainWindow.setLocationRelativeTo(null); // Установление положения рамки в центре экрана?
-        mainWindow.setVisible(true);
-        frame.setVisible(false);
+        inputButton.addActionListener(event -> {
+                    MyFrame mainWindow = new MyFrame(frame);
+                    mainWindow.setVisible(true);
+                    frame.setVisible(false);
+                }
+        );
     }
 
     void compose() {
@@ -36,10 +38,12 @@ public class Menu extends JFrame {
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                 .addGroup(layout.createSequentialGroup()
                         .addComponent(okButton)
-                ));
+                        .addComponent(inputButton))
+        );
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(okButton)
-                ));
+                        .addComponent(inputButton))
+        );
     }
 }
