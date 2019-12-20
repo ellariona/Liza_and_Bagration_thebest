@@ -246,20 +246,25 @@ public class CalculationWindow extends JFrame {
     public void addListenerForSaveOrOpen(JButton save, TabulatedFunction func) {
         save.addActionListener(event -> {
             try {
-                if (func instanceof ArrayTabulatedFunction) {
-                    FileChooserTest.main(new String[]{});
-                } else {
-                    FileChooserTest.main(new String[]{"www"});
-                }
+                FileChooserTest.main(func);
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
         });
     }
 
-    public void addListenerCreateByTable(){
-
+    public void addListenerCreateByTable(JButton button, TabulatedFunction func) {
+        button.addActionListener(event -> {
+            try {
+                //MyFrame.main(func);
+            } catch (Exception e) {
+                new ErrorWindow(this, e);
+            }
+        });
+        //обращаемся к MyFrame;
     }
 
-
+    public void addListenerCreateByFnc() {
+        //обращаемся к MathFunctionWindow;
+    }
 }

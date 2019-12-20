@@ -1,5 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
+import javafx.scene.control.Tab;
 import ru.ssau.tk.ellapil.lab2.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
@@ -31,8 +32,24 @@ public class MyFrame extends JFrame {
         app.setVisible(true);
     }
 
+    public static void main(TabulatedFunction func) {
+        MyFrame app = new MyFrame(func);
+        app.setVisible(true);
+    }
+
     public MyFrame() {
         super("Create with table");
+        this.setBounds(300, 300, 500, 500);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addButtonListeners();
+        compose();
+        inputButton.setEnabled(false);
+        commitButton.setEnabled(false);
+    }
+
+    public MyFrame(TabulatedFunction func) {
+        super("Create with table");
+        this.func = func;
         this.setBounds(300, 300, 500, 500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addButtonListeners();

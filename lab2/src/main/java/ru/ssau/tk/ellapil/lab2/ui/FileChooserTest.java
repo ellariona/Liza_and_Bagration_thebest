@@ -98,13 +98,10 @@ public class FileChooserTest extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
-        if (args != null) {
-            run(new FileChooserTest(new LinkedListTabulatedFunction()), 250, 110);
-        } else {
-            run(new FileChooserTest(new ArrayTabulatedFunction()), 250, 110);
-        }
+    public static void main(TabulatedFunction func) {
+        run(new FileChooserTest(func), 250, 110);
     }
+
 
     public static void run(JFrame frame, int width, int height) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
