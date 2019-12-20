@@ -212,6 +212,11 @@ public class CalculationWindow extends JFrame {
         app.setVisible(true);
     }
 
+    public static void main(JFrame args) {
+        CalculationWindow app = new CalculationWindow();
+        app.setVisible(true);
+    }
+
     public void addButtonListeners() {
 
         addListenerForCalculate();
