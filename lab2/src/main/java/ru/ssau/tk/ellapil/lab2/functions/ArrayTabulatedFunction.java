@@ -58,6 +58,10 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         }
     }
 
+    public ArrayTabulatedFunction() {
+
+    }
+
     @Override
     public void insert(double x, double y) {
         if (this.indexOfX(x) != -1) {

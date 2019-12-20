@@ -12,6 +12,10 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     private Node head;
     protected int count;
 
+    public LinkedListTabulatedFunction() {
+
+    }
+
     private void addNode(double x, double y) {
         Node newNode = new Node();
         newNode.x = x;
