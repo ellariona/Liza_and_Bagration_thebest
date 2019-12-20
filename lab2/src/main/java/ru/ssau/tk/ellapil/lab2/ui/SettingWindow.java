@@ -5,9 +5,6 @@ import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Arrays;
@@ -15,17 +12,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SettingWindow extends JFrame {
-    //private static final int SPACING_SIZE = 10;
     JLabel fontLabel = new JLabel("Which factory do you want to use?");
     private Map<String, AbstractTabulatedFunction> nameFunctionMap = new HashMap<>();
     private JComboBox<String> functionComboBox = new JComboBox<>();
-    //List<Double> xValues = new ArrayList<>();
-    //List<Double> yValues = new ArrayList<>();
     private JButton okButton = new JButton("OK");
     private JComboBox fontComboBox;
 
     public SettingWindow() {
-        setTitle("Faсtory");
+        setTitle("Settings");
         setSize(300, 200);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -67,7 +61,6 @@ public class SettingWindow extends JFrame {
         }
     }
 
-    // private AbstractTabulatedFunction function = new ArrayTabulatedFunction(xValues, yValues);
     public static void main(String[] args) {
         JFrame frame = new SettingWindow();
         frame.setVisible(true);
