@@ -29,6 +29,20 @@ public class Menu extends JFrame {
                     }
                 }
         );
+        inputButtonFactory.addActionListener(event -> {
+            try {
+                SettingWindow.main(frame);
+            } catch (Exception e) {
+                new ErrorWindow(this, e);
+            }
+        });
+        inputButtonMath.addActionListener(event -> {
+            try {
+                MathFunctionWindow.main(frame);
+            } catch (Exception e) {
+                new ErrorWindow(this, e);
+            }
+        });
     }
 
     void compose() {
@@ -38,11 +52,15 @@ public class Menu extends JFrame {
         layout.setAutoCreateContainerGaps(true);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                 .addGroup(layout.createSequentialGroup()
-                        .addComponent(inputButton))
+                        .addComponent(inputButton)
+                        .addComponent(inputButtonMath)
+                        .addComponent(inputButtonFactory))
         );
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(inputButton))
+                        .addComponent(inputButton)
+                        .addComponent(inputButtonMath)
+                        .addComponent(inputButtonFactory))
         );
     }
 

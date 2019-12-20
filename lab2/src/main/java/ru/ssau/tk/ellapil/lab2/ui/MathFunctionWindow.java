@@ -19,7 +19,7 @@ public class MathFunctionWindow extends JFrame {
     private Map<String, MathFunction> nameFunctionMap = new HashMap<>();
     private TabulatedFunction factory;
 
-    public static void main(String[] args) {
+    public static void main(JFrame args) {
         MathFunctionWindow app = new MathFunctionWindow();
         app.setVisible(true);
     }

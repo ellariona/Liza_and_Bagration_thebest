@@ -61,7 +61,7 @@ public class SettingWindow extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(JFrame args) {
         JFrame frame = new SettingWindow();
         frame.setVisible(true);
     }
