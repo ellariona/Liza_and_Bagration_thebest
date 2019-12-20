@@ -4,6 +4,7 @@ import ru.ssau.tk.ellapil.lab2.exceptions.ArrayIsNotSortedException;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class ErrorWindow {
 
@@ -22,6 +23,9 @@ public class ErrorWindow {
         }
         if (e instanceof ArrayIsNotSortedException) {
             return "Array is not sorted";
+        }
+        if (e instanceof IOException){
+            return "File is corrupted";
         }
         return "Unknown error";
     }
