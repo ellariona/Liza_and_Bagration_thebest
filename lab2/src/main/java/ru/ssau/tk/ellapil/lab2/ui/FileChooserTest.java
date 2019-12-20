@@ -11,6 +11,7 @@ import ru.ssau.tk.ellapil.lab2.io.FunctionsIO;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.io.*;
 
@@ -85,7 +86,7 @@ public class FileChooserTest extends JFrame {
                 factory = new ArrayTabulatedFunctionFactory();
                 if (file != null) {
                     try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
-                        var func1 = FunctionsIO.readTabulatedFunction(inputStream, factory);
+                        func = FunctionsIO.readTabulatedFunction(inputStream, factory);
                     } catch (Exception e) {
                         new ErrorWindow(this, e);
                     }
@@ -108,4 +109,5 @@ public class FileChooserTest extends JFrame {
         frame.setSize(width, height);
         frame.setVisible(true);
     }
+
 }

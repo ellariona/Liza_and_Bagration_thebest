@@ -22,6 +22,8 @@ public class CalculationWindow extends JFrame {
     private JComboBox<String> functionComboBox = new JComboBox<>();
     JButton calculate = new JButton("Calculate");
     TabulatedFunctionFactory factoryResult;
+    TabulatedFunctionFactory factoryFirst;
+    TabulatedFunctionFactory factorySecond;
     TabulatedFunction result;
     TabulatedFunction first;
     TabulatedFunction second;
@@ -79,7 +81,7 @@ public class CalculationWindow extends JFrame {
         panel.add(createByArray);
         addListenerCreateByTable(createByArray, first);
         panel.add(createByFunc);
-        addListenerCreateByFnc(createByFunc, first);
+        addListenerCreateByFnc(createByFunc, first, tableModel);
         panel.add(saveOrOpen);
         addListenerForSaveOrOpen(saveOrOpen, first);
         //panel.add(open);
@@ -130,7 +132,7 @@ public class CalculationWindow extends JFrame {
         panel.add(createByArray);
         addListenerCreateByTable(createByArray, second);
         panel.add(createByFunc);
-        addListenerCreateByFnc(createByFunc, second);
+        addListenerCreateByFnc(createByFunc, second, tableModel);
         panel.add(saveOrOpen);
         addListenerForSaveOrOpen(saveOrOpen, second);
         //panel.add(save);
@@ -176,7 +178,12 @@ public class CalculationWindow extends JFrame {
     public CalculationWindow() {
         super("Does it work? 0_0");
         this.setBounds(0, 100, 800, 600);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        if (factoryFirst instanceof LinkedListTabulatedFunction) {
+            first = new LinkedListTabulatedFunction();
+        } else {
+            first = new ArrayTabulatedFunction();
+        }
         fillMap();
         compose();
         addButtonListeners();
@@ -248,6 +255,7 @@ public class CalculationWindow extends JFrame {
         save.addActionListener(event -> {
             try {
                 FileChooserTest.main(func);
+                int k = 1;
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
@@ -264,10 +272,11 @@ public class CalculationWindow extends JFrame {
         });
     }
 
-    public void addListenerCreateByFnc(JButton button, TabulatedFunction func) {
+    public void addListenerCreateByFnc(JButton button, TabulatedFunction func, AbstractTableModel tableModel) {
         button.addActionListener(event -> {
             try {
                 MathFunctionWindow.main(func);
+                tableModel.fireTableDataChanged();
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
