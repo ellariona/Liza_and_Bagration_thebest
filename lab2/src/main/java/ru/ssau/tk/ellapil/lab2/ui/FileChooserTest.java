@@ -1,7 +1,10 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
+import javafx.scene.control.Tab;
 import ru.ssau.tk.ellapil.lab2.functions.AbstractTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.io.FunctionsIO;
@@ -16,10 +19,11 @@ public class FileChooserTest extends JFrame {
     private JTextField dir = new JTextField();
     private JButton open = new JButton("Open");
     private JButton save = new JButton("Save");
-    private AbstractTabulatedFunction func;
+    private TabulatedFunction func;
     private TabulatedFunctionFactory factory;
 
-    public FileChooserTest() {
+    public FileChooserTest(TabulatedFunction func) {
+        this.func = func;
         JPanel p = new JPanel();
         addListenerForOpenButton();
         p.add(open);
@@ -78,7 +82,7 @@ public class FileChooserTest extends JFrame {
                 filename.setText(c.getSelectedFile().getName());
                 dir.setText(c.getCurrentDirectory().toString());
                 File file = c.getSelectedFile();
-                factory=new ArrayTabulatedFunctionFactory();
+                factory = new ArrayTabulatedFunctionFactory();
                 if (file != null) {
                     try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
                         var func1 = FunctionsIO.readTabulatedFunction(inputStream, factory);
@@ -95,7 +99,11 @@ public class FileChooserTest extends JFrame {
     }
 
     public static void main(String[] args) {
-        run(new FileChooserTest(), 250, 110);
+        if (args != null) {
+            run(new FileChooserTest(new LinkedListTabulatedFunction()), 250, 110);
+        } else {
+            run(new FileChooserTest(new ArrayTabulatedFunction()), 250, 110);
+        }
     }
 
     public static void run(JFrame frame, int width, int height) {

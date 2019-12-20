@@ -9,11 +9,11 @@ import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 public class TabulatedFunctionOperationService {
     public TabulatedFunctionFactory factory;
 
-    TabulatedFunctionOperationService(TabulatedFunctionFactory factory) {
+    public TabulatedFunctionOperationService(TabulatedFunctionFactory factory) {
         this.factory = factory;
     }
 
-    TabulatedFunctionOperationService() {
+    public TabulatedFunctionOperationService() {
         factory = new ArrayTabulatedFunctionFactory();
     }
 
