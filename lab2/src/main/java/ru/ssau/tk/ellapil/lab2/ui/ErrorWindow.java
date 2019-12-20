@@ -7,9 +7,9 @@ import java.awt.*;
 
 public class ErrorWindow {
 
-    ErrorWindow(Component parent, Exception e) {
-        showErrorWindow(parent, e);
-    }
+    //ErrorWindow(Component parent, Exception e) {
+        //showErrorWindow(parent, e);
+    //}
 
     public void showErrorWindow(Component parent, Exception e) {
         String head = generateMessageForException(e);

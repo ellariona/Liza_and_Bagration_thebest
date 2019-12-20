@@ -60,9 +60,12 @@ public class MyFrame extends JFrame {
                 int count = Integer.parseInt(countField.getText());
                 table = new JTable(new MyTableModel(new ArrayList<>(count), new ArrayList<>(count)));
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getStackTrace());
+                ErrorWindow errorWindow = new ErrorWindow();
+                errorWindow.showErrorWindow(this, e);
+                //JOptionPane.showMessageDialog(this, e.getStackTrace());
             }
         });
+
 
         countField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -84,5 +87,7 @@ public class MyFrame extends JFrame {
                 inputButton.setEnabled(!countField.getText().isEmpty());
             }
         });
+
+
     }
 }
