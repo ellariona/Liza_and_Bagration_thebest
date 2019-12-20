@@ -163,13 +163,9 @@ public class CalculationWindow extends JFrame {
         JLabel label = new JLabel("result");
         JTable table1 = new JTable(tableModel);
         JButton save = new JButton("Save");
-        JButton createByArray = new JButton("Create by Table");
-        JButton createByFunc = new JButton("Create by Func");
         JScrollPane tableScrollPane = new JScrollPane(table1);
         panel.add(label);
         panel.add(tableScrollPane);
-        panel.add(createByArray);
-        panel.add(createByFunc);
         panel.add(save);
         addListenerForSaveOrOpen(save, result);
         panel.setPreferredSize(new Dimension(100, 150));
@@ -259,6 +255,10 @@ public class CalculationWindow extends JFrame {
                 new ErrorWindow(this, e);
             }
         });
+    }
+
+    public void addListenerCreateByTable(){
+
     }
 
 
