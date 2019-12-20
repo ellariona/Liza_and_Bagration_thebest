@@ -4,8 +4,9 @@ import javax.swing.*;
 
 public class Menu extends JFrame {
     private JFrame frame;
-    private JButton okButton = new JButton("Start");
-    private JButton inputButton = new JButton("OneOkno");
+    private JButton inputButton = new JButton("Create the table");
+    private JButton inputButtonFactory = new JButton("Choose factory");
+    private JButton inputButtonMath = new JButton("Choose Math function");
 
     public Menu() {
         setTitle("Menu");
@@ -23,9 +24,13 @@ public class Menu extends JFrame {
 
     public void actionPerformed() {
         inputButton.addActionListener(event -> {
-                    MyFrame mainWindow = new MyFrame(frame);
-                    mainWindow.setVisible(true);
-                    frame.setVisible(false);
+                    try {
+                        MyFrame mainWindow = new MyFrame(frame);
+                        mainWindow.setVisible(true);
+                        frame.setVisible(false);
+                    } catch (Exception e) {
+                        new ErrorWindow(this, e);
+                    }
                 }
         );
     }
@@ -37,12 +42,10 @@ public class Menu extends JFrame {
         layout.setAutoCreateContainerGaps(true);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                 .addGroup(layout.createSequentialGroup()
-                        .addComponent(okButton)
                         .addComponent(inputButton))
         );
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(okButton)
                         .addComponent(inputButton))
         );
     }
