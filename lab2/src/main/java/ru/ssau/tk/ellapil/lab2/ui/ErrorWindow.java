@@ -1,6 +1,7 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
 import ru.ssau.tk.ellapil.lab2.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.ellapil.lab2.exceptions.InconsistentFunctionsException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,8 +25,11 @@ public class ErrorWindow {
         if (e instanceof ArrayIsNotSortedException) {
             return "Array is not sorted";
         }
-        if (e instanceof IOException){
+        if (e instanceof IOException) {
             return "File is corrupted";
+        }
+        if (e instanceof InconsistentFunctionsException) {
+            return "xValues are different";
         }
         return "Unknown error";
     }

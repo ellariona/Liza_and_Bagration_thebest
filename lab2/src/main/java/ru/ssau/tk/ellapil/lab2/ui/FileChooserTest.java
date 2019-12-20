@@ -1,6 +1,8 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
 import ru.ssau.tk.ellapil.lab2.functions.AbstractTabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.io.FunctionsIO;
 
@@ -47,9 +49,10 @@ public class FileChooserTest extends JFrame {
                 filename.setText(c.getSelectedFile().getName());
                 dir.setText(c.getCurrentDirectory().toString());
                 File file = c.getSelectedFile();
+                func = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{2, 3});
                 if (file != null) {
-                    try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
-                        var func1 = FunctionsIO.readTabulatedFunction(inputStream, factory);
+                    try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {
+                        FunctionsIO.writeTabulatedFunction(outputStream, func);
                     } catch (Exception e) {
                         new ErrorWindow(this, e);
                     }
@@ -75,6 +78,7 @@ public class FileChooserTest extends JFrame {
                 filename.setText(c.getSelectedFile().getName());
                 dir.setText(c.getCurrentDirectory().toString());
                 File file = c.getSelectedFile();
+                factory=new ArrayTabulatedFunctionFactory();
                 if (file != null) {
                     try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
                         var func1 = FunctionsIO.readTabulatedFunction(inputStream, factory);
