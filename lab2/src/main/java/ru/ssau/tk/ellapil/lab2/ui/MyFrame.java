@@ -7,13 +7,17 @@ import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MyFrame extends JFrame {
     List<Double> xValues = new ArrayList<>();
@@ -32,6 +36,11 @@ public class MyFrame extends JFrame {
         app.setVisible(true);
     }
 
+    public static void main(Consumer<? super TabulatedFunction> callback) {
+        MyFrame app = new MyFrame(callback);
+        app.setVisible(true);
+    }
+
     public static void main(TabulatedFunction func) {
         MyFrame app = new MyFrame(func);
         app.setVisible(true);
@@ -42,6 +51,16 @@ public class MyFrame extends JFrame {
         this.setBounds(300, 300, 500, 500);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addButtonListeners();
+        compose();
+        inputButton.setEnabled(false);
+        commitButton.setEnabled(false);
+    }
+
+    public MyFrame(Consumer<? super TabulatedFunction> callback) {
+        super("Create with table");
+        this.setBounds(300, 300, 500, 500);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addButtonListeners(callback);
         compose();
         inputButton.setEnabled(false);
         commitButton.setEnabled(false);
@@ -62,6 +81,7 @@ public class MyFrame extends JFrame {
     }
 
     void compose() {
+        setContentPane(new BgPanelOne());
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setAutoCreateGaps(true);
@@ -83,6 +103,12 @@ public class MyFrame extends JFrame {
                 .addComponent(tableScrollPane)
                 .addComponent(commitButton)
         );
+    }
+
+    public void addButtonListeners(Consumer<? super TabulatedFunction> callback) {
+        addListenerForInputButton();
+        addListenerForCommitButton(callback);
+        addListenerForCountButton();
     }
 
     public void addButtonListeners() {
@@ -118,6 +144,28 @@ public class MyFrame extends JFrame {
             }
         });
 
+    }
+
+    public void addListenerForCommitButton(Consumer<? super TabulatedFunction> callback) {
+        commitButton.addActionListener(event -> {
+            try {
+                double[] x = new double[xValues.size()];
+                double[] y = new double[xValues.size()];
+                x[0] = xValues.get(0);
+                y[0] = yValues.get(0);
+                for (int i = 1; i < xValues.size(); i++) {
+                    if (xValues.get(i - 1) > xValues.get(i)) {
+                        throw new ArrayIsNotSortedException();
+                    }
+                    x[i] = xValues.get(i);
+                    y[i] = yValues.get(i);
+                }
+                func = factory.create(x, y);
+                callback.accept(func);
+            } catch (Exception e) {
+                new ErrorWindow(this, e);
+            }
+        });
     }
 
     public void addListenerForCommitButton() {
@@ -164,4 +212,15 @@ public class MyFrame extends JFrame {
         });
     }
 
+}
+
+class BgPanelOne extends JPanel {
+    public void paintComponent(Graphics g) {
+        Image im = null;
+        try {
+            im = ImageIO.read(new File("C:\\Users\\Елизавета\\Desktop\\картиночки\\udHoRHaQBpU.jpg"));
+        } catch (IOException ignored) {
+        }
+        g.drawImage(im, 0, 0, null);
+    }
 }

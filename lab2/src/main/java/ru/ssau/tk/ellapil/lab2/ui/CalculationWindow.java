@@ -1,6 +1,7 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
 import ru.ssau.tk.ellapil.lab2.functions.*;
+import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.operations.TabulatedFunctionOperationService;
 
@@ -21,7 +22,7 @@ public class CalculationWindow extends JFrame {
     private Map<String, Integer> nameFunctionMap = new LinkedHashMap<>();
     private JComboBox<String> functionComboBox = new JComboBox<>();
     JButton calculate = new JButton("Calculate");
-    TabulatedFunctionFactory factoryResult;
+    TabulatedFunctionFactory factoryResult=new ArrayTabulatedFunctionFactory();
     TabulatedFunctionFactory factoryFirst;
     TabulatedFunctionFactory factorySecond;
     TabulatedFunction result;
@@ -79,11 +80,12 @@ public class CalculationWindow extends JFrame {
         panel.add(label);
         panel.add(tableScrollPane);
         panel.add(createByArray);
-        addListenerCreateByTable(createByArray, first);
+        //addListenerCreateByTable(createByArray, first);
+        addListenerCreateByTable(createByArray, 1);
         panel.add(createByFunc);
-        addListenerCreateByFnc(createByFunc, first, tableModel);
+        addListenerCreateByFnc(createByFunc, tableModel);
         panel.add(saveOrOpen);
-        addListenerForSaveOrOpen(saveOrOpen, first);
+        addListenerForSaveOrOpen(saveOrOpen);
         //panel.add(open);
         panel.setPreferredSize(new Dimension(100, 150));
         return panel;
@@ -130,9 +132,10 @@ public class CalculationWindow extends JFrame {
         panel.add(label);
         panel.add(tableScrollPane);
         panel.add(createByArray);
-        addListenerCreateByTable(createByArray, second);
+        //addListenerCreateByTable(createByArray, second);
+        addListenerCreateByTable(createByArray);
         panel.add(createByFunc);
-        addListenerCreateByFnc(createByFunc, second, tableModel);
+        addListenerCreateByFnc(createByFunc, tableModel, 1);
         panel.add(saveOrOpen);
         addListenerForSaveOrOpen(saveOrOpen, second);
         //panel.add(save);
@@ -170,7 +173,7 @@ public class CalculationWindow extends JFrame {
         panel.add(label);
         panel.add(tableScrollPane);
         panel.add(save);
-        addListenerForSaveOrOpen(save, result);
+        addListenerForSaveOrOpen(save, 1);
         panel.setPreferredSize(new Dimension(100, 150));
         return panel;
     }
@@ -259,7 +262,28 @@ public class CalculationWindow extends JFrame {
     public void addListenerForSaveOrOpen(JButton save, TabulatedFunction func) {
         save.addActionListener(event -> {
             try {
-                FileChooserTest.main(func);
+                FileChooserTest.main(f -> second = f);
+                int k = 1;
+            } catch (Exception e) {
+                new ErrorWindow(this, e);
+            }
+        });
+    }
+
+    public void addListenerForSaveOrOpen(JButton save, int k) {
+        save.addActionListener(event -> {
+            try {
+                FileChooserTest.main(f -> result = f);
+            } catch (Exception e) {
+                new ErrorWindow(this, e);
+            }
+        });
+    }
+
+    public void addListenerForSaveOrOpen(JButton save) {
+        save.addActionListener(event -> {
+            try {
+                FileChooserTest.main(f -> first = f);
                 int k = 1;
             } catch (Exception e) {
                 new ErrorWindow(this, e);
@@ -277,10 +301,43 @@ public class CalculationWindow extends JFrame {
         });
     }
 
-    public void addListenerCreateByFnc(JButton button, TabulatedFunction func, AbstractTableModel tableModel) {
+    public void addListenerCreateByTable(JButton button, int k) {
         button.addActionListener(event -> {
             try {
-                MathFunctionWindow.main(func);
+                MyFrame.main(f -> first = f);
+            } catch (Exception e) {
+                new ErrorWindow(this, e);
+            }
+        });
+    }
+
+    public void addListenerCreateByTable(JButton button) {
+        button.addActionListener(event -> {
+            try {
+                MyFrame.main(f -> second = f);
+            } catch (Exception e) {
+                new ErrorWindow(this, e);
+            }
+        });
+    }
+
+
+    public void addListenerCreateByFnc(JButton button, AbstractTableModel tableModel) {
+        button.addActionListener(event -> {
+            try {
+                MathFunctionWindow.main(f -> first = f);
+                tableModel.fireTableDataChanged();
+                int z=1;
+            } catch (Exception e) {
+                new ErrorWindow(this, e);
+            }
+        });
+    }
+
+    public void addListenerCreateByFnc(JButton button, AbstractTableModel tableModel, int k) {
+        button.addActionListener(event -> {
+            try {
+                MathFunctionWindow.main(f -> second = f);
                 tableModel.fireTableDataChanged();
             } catch (Exception e) {
                 new ErrorWindow(this, e);
@@ -288,3 +345,4 @@ public class CalculationWindow extends JFrame {
         });
     }
 }
+
