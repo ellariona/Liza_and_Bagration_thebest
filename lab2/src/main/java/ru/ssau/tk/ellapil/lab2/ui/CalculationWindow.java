@@ -92,7 +92,7 @@ public class CalculationWindow extends JFrame {
         panel.add(createByFunc);
         addListenerCreateByFnc(createByFunc, tableModel);
         panel.add(saveOrOpen);
-        addListenerForSaveOrOpen(saveOrOpen);
+        addListenerForSaveOrOpen(saveOrOpen, tableModel);
         //panel.add(open);
         panel.setPreferredSize(new Dimension(100, 150));
         return panel;
@@ -146,7 +146,7 @@ public class CalculationWindow extends JFrame {
         panel.add(createByFunc);
         addListenerCreateByFnc(createByFunc, tableModel, 1);
         panel.add(saveOrOpen);
-        addListenerForSaveOrOpen(saveOrOpen, second);
+        addListenerForSaveOrOpen(1, saveOrOpen, tableModel);
         //panel.add(save);
         //panel.add(open);
         panel.setPreferredSize(new Dimension(100, 150));
@@ -184,7 +184,7 @@ public class CalculationWindow extends JFrame {
         panel.add(label);
         panel.add(tableScrollPane);
         panel.add(save);
-        addListenerForSaveOrOpen(save, 1);
+        addListenerForSaveOrOpen(save, tableModel, 1);
         panel.setPreferredSize(new Dimension(100, 150));
         return panel;
     }
@@ -271,31 +271,39 @@ public class CalculationWindow extends JFrame {
         });
     }
 
-    public void addListenerForSaveOrOpen(JButton save, TabulatedFunction func) {
+    public void addListenerForSaveOrOpen(JButton save, AbstractTableModel tableModel, int k) {
         save.addActionListener(event -> {
             try {
-                FileChooserTest.main(second, f -> second = f);
-                int k = 1;
+                FileChooserTest.main(result, f -> {
+                    result = f;
+                    refreshFirst(result, tableModel, 1);
+                });
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
         });
     }
 
-    public void addListenerForSaveOrOpen(JButton save, int k) {
+    public void addListenerForSaveOrOpen(int k, JButton save, AbstractTableModel tableModel) {
         save.addActionListener(event -> {
             try {
-                FileChooserTest.main(result, f -> result = f);
+                FileChooserTest.main(second, f -> {
+                    second = f;
+                    refreshFirst(second, tableModel, 1);
+                });
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
         });
     }
 
-    public void addListenerForSaveOrOpen(JButton save) {
+    public void addListenerForSaveOrOpen(JButton save, AbstractTableModel tableModel) {
         save.addActionListener(event -> {
             try {
-                FileChooserTest.main(first, f -> first = f);
+                FileChooserTest.main(first, f -> {
+                    first = f;
+                    refreshFirst(first, tableModel, 1);
+                });
                 int k = 1;
             } catch (Exception e) {
                 new ErrorWindow(this, e);
