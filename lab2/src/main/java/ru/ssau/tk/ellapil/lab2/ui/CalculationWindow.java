@@ -1,8 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
 import ru.ssau.tk.ellapil.lab2.functions.*;
-import ru.ssau.tk.ellapil.lab2.functions.Point;
-import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.operations.TabulatedFunctionOperationService;
 
@@ -418,3 +416,4 @@ public class CalculationWindow extends JFrame {
     }
 
 }
+

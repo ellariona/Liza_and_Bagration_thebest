@@ -3,8 +3,10 @@ package ru.ssau.tk.ellapil.lab2.ui;
 import ru.ssau.tk.ellapil.lab2.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.ellapil.lab2.exceptions.InconsistentFunctionsException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class ErrorWindow {
@@ -33,5 +35,4 @@ public class ErrorWindow {
         }
         return "Unknown error";
     }
-
 }

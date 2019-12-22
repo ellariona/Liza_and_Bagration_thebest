@@ -1,6 +1,17 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
+import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Menu extends JFrame {
     private JFrame frame;
@@ -8,20 +19,21 @@ public class Menu extends JFrame {
     private JButton inputButtonFactory = new JButton("Choose factory");
     private JButton inputButtonMath = new JButton("Choose Math function");
     private JButton inputButtonCalc = new JButton("Calculation");
+    private TabulatedFunction factory;
 
-    public Menu() {
+    public Menu() throws IOException {
         setTitle("Menu");
         setBounds(300, 200, 500, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        actionPerformed();
         compose();
-
+        actionPerformed();
+        this.factory = new ArrayTabulatedFunction();
     }
 
     public void actionPerformed() {
         inputButton.addActionListener(event -> {
                     try {
-                        MyFrame.main(frame);
+                        MyFrame.main(factory);
                         //MyFrame mainWindow = new MyFrame(frame);
                         //mainWindow.setVisible(true);
                         //frame.setVisible(false);
@@ -32,14 +44,14 @@ public class Menu extends JFrame {
         );
         inputButtonFactory.addActionListener(event -> {
             try {
-                SettingWindow.main(frame);
+                SettingWindow.main(factory);
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
         });
         inputButtonMath.addActionListener(event -> {
             try {
-                MathFunctionWindow.main(frame);
+                MathFunctionWindow.main(factory);
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
@@ -55,6 +67,7 @@ public class Menu extends JFrame {
     }
 
     void compose() {
+        setContentPane(new BgPanel());
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setAutoCreateGaps(true);
@@ -75,8 +88,19 @@ public class Menu extends JFrame {
         );
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Menu window = new Menu();
         window.setVisible(true);
+    }
+}
+
+class BgPanel extends JPanel {
+    public void paintComponent(Graphics g) {
+        Image im = null;
+        try {
+            im = ImageIO.read(new File("C:\\Users\\Елизавета\\Desktop\\картиночки\\aY0c1IuzFws.jpg"));
+        } catch (IOException ignored) {
+        }
+        g.drawImage(im, 0, 0, null);
     }
 }
