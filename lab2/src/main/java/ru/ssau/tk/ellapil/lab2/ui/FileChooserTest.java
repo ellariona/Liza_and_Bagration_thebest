@@ -14,6 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.io.*;
+import java.util.function.Consumer;
 
 public class FileChooserTest extends JFrame {
     private JTextField filename = new JTextField();
@@ -27,6 +28,23 @@ public class FileChooserTest extends JFrame {
         this.func = func;
         JPanel p = new JPanel();
         addListenerForOpenButton();
+        p.add(open);
+        addListenerForSaveButton();
+        p.add(save);
+        Container cp = getContentPane();
+        cp.add(p, BorderLayout.SOUTH);
+        dir.setEditable(false);
+        filename.setEditable(false);
+        p = new JPanel();
+        p.setLayout(new GridLayout(2, 1));
+        p.add(filename);
+        p.add(dir);
+        cp.add(p, BorderLayout.NORTH);
+    }
+
+    public FileChooserTest(Consumer<? super TabulatedFunction> callback) {
+        JPanel p = new JPanel();
+        addListenerForOpenButton(callback);
         p.add(open);
         addListenerForSaveButton();
         p.add(save);
@@ -98,6 +116,41 @@ public class FileChooserTest extends JFrame {
             }
         });
     }
+
+    public void addListenerForOpenButton(Consumer<? super TabulatedFunction> callback) {
+        open.addActionListener(event -> {
+            JFileChooser c = new JFileChooser();
+            // Demonstrate "Open" dialog:
+            c.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            c.addChoosableFileFilter(
+                    new FileNameExtensionFilter("Text files", "txt"));
+            c.setAcceptAllFileFilterUsed(false);
+            int rVal = c.showOpenDialog(FileChooserTest.this);
+            if (rVal == JFileChooser.APPROVE_OPTION) {
+                filename.setText(c.getSelectedFile().getName());
+                dir.setText(c.getCurrentDirectory().toString());
+                File file = c.getSelectedFile();
+                factory = new ArrayTabulatedFunctionFactory();
+                if (file != null) {
+                    try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
+                        func = FunctionsIO.readTabulatedFunction(inputStream, factory);
+                        callback.accept(func);
+                    } catch (Exception e) {
+                        new ErrorWindow(this, e);
+                    }
+                }
+            }
+            if (rVal == JFileChooser.CANCEL_OPTION) {
+                filename.setText("You pressed cancel");
+                dir.setText("");
+            }
+        });
+    }
+
+    public static void main(Consumer<? super TabulatedFunction> callback) {
+        run(new FileChooserTest(callback), 250, 110);
+    }
+
 
     public static void main(TabulatedFunction func) {
         run(new FileChooserTest(func), 250, 110);
