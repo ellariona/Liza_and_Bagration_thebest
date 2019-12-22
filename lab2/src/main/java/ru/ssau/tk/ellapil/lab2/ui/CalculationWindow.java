@@ -274,7 +274,7 @@ public class CalculationWindow extends JFrame {
     public void addListenerForSaveOrOpen(JButton save, TabulatedFunction func) {
         save.addActionListener(event -> {
             try {
-                FileChooserTest.main(f -> second = f);
+                FileChooserTest.main(second, f -> second = f);
                 int k = 1;
             } catch (Exception e) {
                 new ErrorWindow(this, e);
@@ -285,7 +285,7 @@ public class CalculationWindow extends JFrame {
     public void addListenerForSaveOrOpen(JButton save, int k) {
         save.addActionListener(event -> {
             try {
-                FileChooserTest.main(f -> result = f);
+                FileChooserTest.main(result, f -> result = f);
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
@@ -295,7 +295,7 @@ public class CalculationWindow extends JFrame {
     public void addListenerForSaveOrOpen(JButton save) {
         save.addActionListener(event -> {
             try {
-                FileChooserTest.main(f -> first = f);
+                FileChooserTest.main(first, f -> first = f);
                 int k = 1;
             } catch (Exception e) {
                 new ErrorWindow(this, e);

@@ -29,7 +29,7 @@ public class FileChooserTest extends JFrame {
         JPanel p = new JPanel();
         addListenerForOpenButton();
         p.add(open);
-        addListenerForSaveButton();
+        addListenerForSaveButton(func);
         p.add(save);
         Container cp = getContentPane();
         cp.add(p, BorderLayout.SOUTH);
@@ -42,11 +42,11 @@ public class FileChooserTest extends JFrame {
         cp.add(p, BorderLayout.NORTH);
     }
 
-    public FileChooserTest(Consumer<? super TabulatedFunction> callback) {
+    public FileChooserTest(TabulatedFunction result, Consumer<? super TabulatedFunction> callback) {
         JPanel p = new JPanel();
         addListenerForOpenButton(callback);
         p.add(open);
-        addListenerForSaveButton();
+        addListenerForSaveButton(result);
         p.add(save);
         Container cp = getContentPane();
         cp.add(p, BorderLayout.SOUTH);
@@ -59,7 +59,7 @@ public class FileChooserTest extends JFrame {
         cp.add(p, BorderLayout.NORTH);
     }
 
-    public void addListenerForSaveButton() {
+    public void addListenerForSaveButton(TabulatedFunction result) {
         save.addActionListener(event -> {
             JFileChooser c = new JFileChooser();
             // Demonstrate "Save" dialog:
@@ -72,10 +72,9 @@ public class FileChooserTest extends JFrame {
                 filename.setText(c.getSelectedFile().getName());
                 dir.setText(c.getCurrentDirectory().toString());
                 File file = c.getSelectedFile();
-                func = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{2, 3});
                 if (file != null) {
                     try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {
-                        FunctionsIO.writeTabulatedFunction(outputStream, func);
+                        FunctionsIO.writeTabulatedFunction(outputStream, result);
                     } catch (Exception e) {
                         new ErrorWindow(this, e);
                     }
@@ -147,8 +146,8 @@ public class FileChooserTest extends JFrame {
         });
     }
 
-    public static void main(Consumer<? super TabulatedFunction> callback) {
-        run(new FileChooserTest(callback), 250, 110);
+    public static void main(TabulatedFunction result, Consumer<? super TabulatedFunction> callback) {
+        run(new FileChooserTest(result, callback), 250, 110);
     }
 
 
