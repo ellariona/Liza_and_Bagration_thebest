@@ -27,8 +27,6 @@ public class FileChooserTest extends JFrame {
     public FileChooserTest(TabulatedFunction func) {
         this.func = func;
         JPanel p = new JPanel();
-        addListenerForOpenButton();
-        p.add(open);
         addListenerForSaveButton(func);
         p.add(save);
         Container cp = getContentPane();

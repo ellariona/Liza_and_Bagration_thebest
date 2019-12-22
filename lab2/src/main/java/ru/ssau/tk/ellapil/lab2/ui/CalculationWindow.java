@@ -274,10 +274,7 @@ public class CalculationWindow extends JFrame {
     public void addListenerForSaveOrOpen(JButton save, AbstractTableModel tableModel, int k) {
         save.addActionListener(event -> {
             try {
-                FileChooserTest.main(result, f -> {
-                    result = f;
-                    refreshFirst(result, tableModel, 1);
-                });
+                FileChooserTest.main(result);
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
