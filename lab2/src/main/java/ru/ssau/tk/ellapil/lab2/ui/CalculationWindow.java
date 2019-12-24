@@ -9,7 +9,6 @@ import ru.ssau.tk.ellapil.lab2.operations.TabulatedFunctionOperationService;
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.util.*;
 import java.util.List;

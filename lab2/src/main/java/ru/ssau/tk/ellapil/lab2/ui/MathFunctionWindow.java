@@ -1,6 +1,7 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
 import ru.ssau.tk.ellapil.lab2.functions.*;
+import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -19,6 +20,7 @@ public class MathFunctionWindow extends JFrame {
     private JButton okButton = new JButton("OK");
     private Map<String, MathFunction> nameFunctionMap = new HashMap<>();
     TabulatedFunction function;
+    TabulatedFunctionFactory factory;
 
     public static void main(JFrame args) {
         MathFunctionWindow app = new MathFunctionWindow();
@@ -30,13 +32,14 @@ public class MathFunctionWindow extends JFrame {
         app.setVisible(true);
     }
 
-    public static void main(Consumer<? super TabulatedFunction> callback) {
-        MathFunctionWindow app = new MathFunctionWindow(callback);
+    public static void main(TabulatedFunctionFactory factory, Consumer<? super TabulatedFunction> callback) {
+        MathFunctionWindow app = new MathFunctionWindow(factory, callback);
         app.setVisible(true);
     }
 
-    public MathFunctionWindow(Consumer<? super TabulatedFunction> callback) {
+    public MathFunctionWindow(TabulatedFunctionFactory factory, Consumer<? super TabulatedFunction> callback) {
         super("CreateFunc");
+        this.factory = factory;
         this.setBounds(300, 200, 500, 200);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fillMap();
@@ -138,7 +141,7 @@ public class MathFunctionWindow extends JFrame {
                 int count = Integer.parseInt(countField.getText());
                 function = new ArrayTabulatedFunction(selectedFunction, from, to, count);
                 callback.accept(function);
-                int k=1;
+                int k = 1;
             } catch (Exception e) {
                 ErrorWindow errorWindow = new ErrorWindow(this, e);
                 errorWindow.showErrorWindow(this, e);
