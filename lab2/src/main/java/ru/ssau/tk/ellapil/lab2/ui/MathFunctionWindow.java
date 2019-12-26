@@ -32,14 +32,13 @@ public class MathFunctionWindow extends JFrame {
         app.setVisible(true);
     }
 
-    public static void main(TabulatedFunctionFactory factory, Consumer<? super TabulatedFunction> callback) {
-        MathFunctionWindow app = new MathFunctionWindow(factory, callback);
+    public static void main(Consumer<? super TabulatedFunction> callback) {
+        MathFunctionWindow app = new MathFunctionWindow(callback);
         app.setVisible(true);
     }
 
-    public MathFunctionWindow(TabulatedFunctionFactory factory, Consumer<? super TabulatedFunction> callback) {
+    public MathFunctionWindow(Consumer<? super TabulatedFunction> callback) {
         super("CreateFunc");
-        this.factory = factory;
         this.setBounds(300, 200, 500, 200);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fillMap();

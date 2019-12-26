@@ -24,7 +24,7 @@ public class MyFrame extends JFrame {
     private JTextField countField = new JTextField();
     private JButton inputButton = new JButton("Input");
     private JButton commitButton = new JButton("Commit");
-    TabulatedFunctionFactory factory;
+    TabulatedFunctionFactory factory=new ArrayTabulatedFunctionFactory();
     TabulatedFunction func;
 
     public static void main(JFrame args) {
@@ -32,8 +32,8 @@ public class MyFrame extends JFrame {
         app.setVisible(true);
     }
 
-    public static void main(TabulatedFunctionFactory factory, Consumer<? super TabulatedFunction> callback) {
-        MyFrame app = new MyFrame(factory, callback);
+    public static void main(Consumer<? super TabulatedFunction> callback) {
+        MyFrame app = new MyFrame(callback);
         app.setVisible(true);
     }
 
@@ -52,9 +52,8 @@ public class MyFrame extends JFrame {
         commitButton.setEnabled(false);
     }
 
-    public MyFrame(TabulatedFunctionFactory factory, Consumer<? super TabulatedFunction> callback) {
+    public MyFrame(Consumer<? super TabulatedFunction> callback) {
         super("Create with table");
-        this.factory = factory;
         this.setBounds(300, 300, 500, 500);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addButtonListeners(callback);
