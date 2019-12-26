@@ -1,10 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class Menu extends JFrame {
     private JFrame frame;
@@ -59,7 +55,6 @@ public class Menu extends JFrame {
     }
 
     void compose() {
-        setContentPane(new Paint());
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setAutoCreateGaps(true);
@@ -83,18 +78,5 @@ public class Menu extends JFrame {
     public static void main(String[] args) {
         Menu window = new Menu();
         window.setVisible(true);
-    }
-}
-
-class Paint extends JPanel {
-
-    public void paintComponent(Graphics g) {
-        Image im = null;
-        try {
-            im = ImageIO.read(new File("C:\\Users\\Елизавета\\Desktop\\картиночки\\aY0c1IuzFws.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        g.drawImage(im, 0, 0, null);
     }
 }

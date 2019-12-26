@@ -1,6 +1,7 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
 import ru.ssau.tk.ellapil.lab2.functions.*;
+import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -19,6 +20,7 @@ public class MathFunctionWindow extends JFrame {
     private JButton okButton = new JButton("OK");
     private Map<String, MathFunction> nameFunctionMap = new HashMap<>();
     TabulatedFunction function;
+    TabulatedFunctionFactory factory;
 
     public static void main(JFrame args) {
         MathFunctionWindow app = new MathFunctionWindow();
@@ -138,7 +140,7 @@ public class MathFunctionWindow extends JFrame {
                 int count = Integer.parseInt(countField.getText());
                 function = new ArrayTabulatedFunction(selectedFunction, from, to, count);
                 callback.accept(function);
-                int k=1;
+                int k = 1;
             } catch (Exception e) {
                 ErrorWindow errorWindow = new ErrorWindow(this, e);
                 errorWindow.showErrorWindow(this, e);
