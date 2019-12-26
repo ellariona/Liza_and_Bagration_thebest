@@ -10,7 +10,6 @@ import javax.swing.plaf.BorderUIResource;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.util.*;
-import java.util.List;
 
 public class CalculationWindow extends JFrame {
     private Map<String, Integer> nameFunctionMap = new LinkedHashMap<>();
