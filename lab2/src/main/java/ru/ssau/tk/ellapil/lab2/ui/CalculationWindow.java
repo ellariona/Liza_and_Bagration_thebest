@@ -88,7 +88,7 @@ public class CalculationWindow extends JFrame {
         panel.add(tableScrollPane);
         panel.add(createByArray);
         //addListenerCreateByTable(createByArray, first);
-        addListenerCreateByTable(createByArray, 1);
+        addListenerCreateByTable(createByArray, tableModel);
         panel.add(createByFunc);
         addListenerCreateByFnc(createByFunc, tableModel);
         panel.add(saveOrOpen);
@@ -142,7 +142,7 @@ public class CalculationWindow extends JFrame {
         panel.add(tableScrollPane);
         panel.add(createByArray);
         //addListenerCreateByTable(createByArray, second);
-        addListenerCreateByTable(createByArray);
+        addListenerCreateByTable(createByArray, tableModel, 1);
         panel.add(createByFunc);
         addListenerCreateByFnc(createByFunc, tableModel, 1);
         panel.add(saveOrOpen);
@@ -308,10 +308,26 @@ public class CalculationWindow extends JFrame {
         });
     }
 
-    public void addListenerCreateByTable(JButton button, TabulatedFunction func) {
+    public void addListenerCreateByTable(JButton button, AbstractTableModel tableModel) {
         button.addActionListener(event -> {
             try {
-                MyFrame.main(func);
+                MyFrame.main(f -> {
+                    first = f;
+                    refreshFirst(first, tableModel, 1);
+                });
+            } catch (Exception e) {
+                new ErrorWindow(this, e);
+            }
+        });
+    }
+
+    public void addListenerCreateByTable(JButton button, AbstractTableModel tableModel, int k) {
+        button.addActionListener(event -> {
+            try {
+                MyFrame.main(f -> {
+                    second = f;
+                    refreshFirst(second, tableModel, 1);
+                });
             } catch (Exception e) {
                 new ErrorWindow(this, e);
             }
@@ -372,8 +388,8 @@ public class CalculationWindow extends JFrame {
     }
 
     public void refreshFirst(TabulatedFunction func, AbstractTableModel tableModel, int k) {
-        Point[] massValues = TabulatedFunctionOperationService.asPoints(func);
-        /*if (k == 1) {
+        /*Point[] massValues = TabulatedFunctionOperationService.asPoints(func);
+        if (k == 1) {
             for (int i = 0; i < massValues.length; i++) {
                 //clearTable(tableModel.getRowCount(), tableModel, 1);
                 xFirst.add(massValues[i].x);
