@@ -3,6 +3,7 @@ package ru.ssau.tk.ellapil.lab2.ui;
 import ru.ssau.tk.ellapil.lab2.functions.AbstractTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
@@ -16,10 +17,11 @@ public class SettingWindow extends JFrame {
     private Map<String, AbstractTabulatedFunction> nameFunctionMap = new HashMap<>();
     private JComboBox<String> functionComboBox = new JComboBox<>();
     private JButton okButton = new JButton("OK");
-    private JComboBox fontComboBox;
+    TabulatedFunctionFactory factory;
 
-    public SettingWindow() {
+    public SettingWindow(TabulatedFunctionFactory factory) {
         setTitle("Settings");
+        this.factory = factory;
         setSize(300, 200);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -39,7 +41,7 @@ public class SettingWindow extends JFrame {
                 .addGroup(layout.createSequentialGroup()
                         .addComponent(functionComboBox)
                         .addComponent(okButton))
-                );
+        );
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(functionComboBox)
@@ -61,8 +63,8 @@ public class SettingWindow extends JFrame {
         }
     }
 
-    public static void main(JFrame args) {
-        JFrame frame = new SettingWindow();
+    public static void main(TabulatedFunctionFactory factory) {
+        JFrame frame = new SettingWindow(factory);
         frame.setVisible(true);
     }
 }

@@ -1,8 +1,7 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
-import javafx.scene.control.Tab;
+
 import ru.ssau.tk.ellapil.lab2.exceptions.ArrayIsNotSortedException;
-import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
@@ -25,7 +24,7 @@ public class MyFrame extends JFrame {
     private JTextField countField = new JTextField();
     private JButton inputButton = new JButton("Input");
     private JButton commitButton = new JButton("Commit");
-    TabulatedFunctionFactory factory = new ArrayTabulatedFunctionFactory();
+    TabulatedFunctionFactory factory;
     TabulatedFunction func;
 
     public static void main(JFrame args) {
@@ -33,8 +32,8 @@ public class MyFrame extends JFrame {
         app.setVisible(true);
     }
 
-    public static void main(Consumer<? super TabulatedFunction> callback) {
-        MyFrame app = new MyFrame(callback);
+    public static void main(TabulatedFunctionFactory factory, Consumer<? super TabulatedFunction> callback) {
+        MyFrame app = new MyFrame(factory, callback);
         app.setVisible(true);
     }
 
@@ -53,8 +52,9 @@ public class MyFrame extends JFrame {
         commitButton.setEnabled(false);
     }
 
-    public MyFrame(Consumer<? super TabulatedFunction> callback){
+    public MyFrame(TabulatedFunctionFactory factory, Consumer<? super TabulatedFunction> callback) {
         super("Create with table");
+        this.factory = factory;
         this.setBounds(300, 300, 500, 500);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addButtonListeners(callback);
@@ -106,6 +106,7 @@ public class MyFrame extends JFrame {
         addListenerForCommitButton(callback);
         addListenerForCountButton();
     }
+
     public void addButtonListeners() {
         addListenerForInputButton();
         addListenerForCommitButton();
