@@ -1,7 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
 import ru.ssau.tk.ellapil.lab2.functions.*;
-import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -20,7 +19,6 @@ public class MathFunctionWindow extends JFrame {
     private JButton okButton = new JButton("OK");
     private Map<String, MathFunction> nameFunctionMap = new HashMap<>();
     TabulatedFunction function;
-    TabulatedFunctionFactory factory;
 
     public static void main(String[] args) {
         MathFunctionWindow app = new MathFunctionWindow();
@@ -40,7 +38,6 @@ public class MathFunctionWindow extends JFrame {
     public MathFunctionWindow(Consumer<? super TabulatedFunction> callback) {
         super("CreateFunc");
         this.setBounds(300, 200, 500, 200);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fillMap();
         compose();
         addButtonListeners(callback);
@@ -51,7 +48,6 @@ public class MathFunctionWindow extends JFrame {
         super("CreateFunc");
         this.function = function;
         this.setBounds(300, 200, 500, 200);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fillMap();
         compose();
         addButtonListeners();
@@ -60,7 +56,6 @@ public class MathFunctionWindow extends JFrame {
     public MathFunctionWindow() {
         super("CreateFunc");
         this.setBounds(300, 200, 500, 200);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fillMap();
         compose();
         addButtonListeners();

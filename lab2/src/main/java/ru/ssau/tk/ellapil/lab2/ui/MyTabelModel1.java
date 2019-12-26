@@ -3,7 +3,6 @@ package ru.ssau.tk.ellapil.lab2.ui;
 import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.List;
 
 public class MyTabelModel1 extends AbstractTableModel {
     private static final int INDEX_COLUMN_NUMBER = 0;
@@ -37,24 +36,6 @@ public class MyTabelModel1 extends AbstractTableModel {
         }
         throw new UnsupportedOperationException();
     }
-
-
-    /*@Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) throws NumberFormatException {
-        if (columnIndex == X_COLUMN_NUMBER) {
-            try {
-                func.set(rowIndex, Double.valueOf(aValue.toString()));
-            } catch (Exception e) {
-                xValues.set(rowIndex, 0.0);
-            }
-        } else if (columnIndex == Y_COLUMN_NUMBER) {
-            try {
-                yValues.set(rowIndex, Double.valueOf(aValue.toString()));
-            } catch (Exception e) {
-                yValues.set(rowIndex, 0.0);
-            }
-        }
-    }*/
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {

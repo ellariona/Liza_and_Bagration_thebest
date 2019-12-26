@@ -1,13 +1,10 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
-import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
-import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -19,11 +16,9 @@ public class Menu extends JFrame {
     private JButton inputButtonFactory = new JButton("Choose factory");
     private JButton inputButtonMath = new JButton("Choose Math function");
     private JButton inputButtonCalc = new JButton("Calculation");
-    private TableModel tableModel = new MyTableModel();
     private TabulatedFunctionFactory factory;
-    TabulatedFunction func;
 
-    public Menu() throws IOException {
+    public Menu() {
         setTitle("Menu");
         setBounds(300, 200, 500, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,9 +31,6 @@ public class Menu extends JFrame {
         inputButton.addActionListener(event -> {
                     try {
                         MyFrame.main(new String[]{});
-                        //MyFrame mainWindow = new MyFrame(frame);
-                        //mainWindow.setVisible(true);
-                        //frame.setVisible(false);
                     } catch (Exception e) {
                         new ErrorWindow(this, e);
                     }

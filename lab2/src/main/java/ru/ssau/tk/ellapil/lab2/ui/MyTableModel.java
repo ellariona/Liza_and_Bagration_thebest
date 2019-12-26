@@ -2,7 +2,6 @@ package ru.ssau.tk.ellapil.lab2.ui;
 
 
 import javax.swing.table.AbstractTableModel;
-import java.util.Arrays;
 import java.util.List;
 
 public class MyTableModel extends AbstractTableModel {
@@ -20,7 +19,6 @@ public class MyTableModel extends AbstractTableModel {
     public MyTableModel() {
 
     }
-
 
     @Override
     public int getRowCount() {

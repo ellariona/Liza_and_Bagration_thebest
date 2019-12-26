@@ -1,9 +1,5 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
-import javafx.scene.control.Tab;
-import ru.ssau.tk.ellapil.lab2.functions.AbstractTabulatedFunction;
-import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
-import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.TabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
@@ -11,7 +7,6 @@ import ru.ssau.tk.ellapil.lab2.io.FunctionsIO;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.io.*;
 import java.util.function.Consumer;
@@ -60,7 +55,6 @@ public class FileChooserTest extends JFrame {
     public void addListenerForSaveButton(TabulatedFunction result) {
         save.addActionListener(event -> {
             JFileChooser c = new JFileChooser();
-            // Demonstrate "Save" dialog:
             c.setFileSelectionMode(JFileChooser.FILES_ONLY);
             c.addChoosableFileFilter(
                     new FileNameExtensionFilter("Text files", "txt"));
@@ -88,7 +82,6 @@ public class FileChooserTest extends JFrame {
     public void addListenerForOpenButton() {
         open.addActionListener(event -> {
             JFileChooser c = new JFileChooser();
-            // Demonstrate "Open" dialog:
             c.setFileSelectionMode(JFileChooser.FILES_ONLY);
             c.addChoosableFileFilter(
                     new FileNameExtensionFilter("Text files", "txt"));
@@ -117,7 +110,6 @@ public class FileChooserTest extends JFrame {
     public void addListenerForOpenButton(Consumer<? super TabulatedFunction> callback) {
         open.addActionListener(event -> {
             JFileChooser c = new JFileChooser();
-            // Demonstrate "Open" dialog:
             c.setFileSelectionMode(JFileChooser.FILES_ONLY);
             c.addChoosableFileFilter(
                     new FileNameExtensionFilter("Text files", "txt"));
@@ -155,7 +147,6 @@ public class FileChooserTest extends JFrame {
 
 
     public static void run(JFrame frame, int width, int height) {
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(width, height);
         frame.setVisible(true);
     }

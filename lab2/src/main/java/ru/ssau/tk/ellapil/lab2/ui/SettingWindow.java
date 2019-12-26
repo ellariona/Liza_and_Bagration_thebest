@@ -7,14 +7,11 @@ import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 
 import javax.swing.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SettingWindow extends JFrame {
-    JLabel fontLabel = new JLabel("Which factory do you want to use?");
     private Map<String, AbstractTabulatedFunction> nameFunctionMap = new HashMap<>();
     private JComboBox<String> functionComboBox = new JComboBox<>();
     private JButton okButton = new JButton("OK");

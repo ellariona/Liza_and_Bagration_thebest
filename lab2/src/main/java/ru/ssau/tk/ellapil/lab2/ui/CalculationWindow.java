@@ -1,7 +1,6 @@
 package ru.ssau.tk.ellapil.lab2.ui;
 
 import ru.ssau.tk.ellapil.lab2.functions.*;
-import ru.ssau.tk.ellapil.lab2.functions.Point;
 import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.operations.TabulatedFunctionOperationService;
@@ -78,21 +77,17 @@ public class CalculationWindow extends JFrame {
         JLabel label = new JLabel("first");
         JTable table1 = new JTable(tableModel);
         JButton saveOrOpen = new JButton("Save or open");
-        //JButton save = new JButton("Save");
-        //JButton open = new JButton("Open");
         JButton createByArray = new JButton("Create by Table");
         JButton createByFunc = new JButton("Create by Func");
         JScrollPane tableScrollPane = new JScrollPane(table1);
         panel.add(label);
         panel.add(tableScrollPane);
         panel.add(createByArray);
-        //addListenerCreateByTable(createByArray, first);
         addListenerCreateByTable(createByArray, tableModel);
         panel.add(createByFunc);
         addListenerCreateByFnc(createByFunc, tableModel);
         panel.add(saveOrOpen);
         addListenerForSaveOrOpen(saveOrOpen, tableModel);
-        //panel.add(open);
         panel.setPreferredSize(new Dimension(100, 150));
         return panel;
     }
@@ -131,8 +126,6 @@ public class CalculationWindow extends JFrame {
         this.tablemodel2 = tableModel;
         JLabel label = new JLabel("second");
         JTable table1 = new JTable(tableModel);
-        //JButton save = new JButton("Save");
-        //JButton open = new JButton("Open");
         JButton saveOrOpen = new JButton("Save or open");
         JButton createByArray = new JButton("Create by Table");
         JButton createByFunc = new JButton("Create by Func");
@@ -140,14 +133,11 @@ public class CalculationWindow extends JFrame {
         panel.add(label);
         panel.add(tableScrollPane);
         panel.add(createByArray);
-        //addListenerCreateByTable(createByArray, second);
         addListenerCreateByTable(createByArray, tableModel, 1);
         panel.add(createByFunc);
         addListenerCreateByFnc(createByFunc, tableModel, 1);
         panel.add(saveOrOpen);
         addListenerForSaveOrOpen(1, saveOrOpen, tableModel);
-        //panel.add(save);
-        //panel.add(open);
         panel.setPreferredSize(new Dimension(100, 150));
         return panel;
     }
@@ -170,10 +160,6 @@ public class CalculationWindow extends JFrame {
             public double getY(int row) {
                 return (double) this.getValueAt(row, 2);
             }
-
-            /*public void setY(double aValue, int row) {
-                this.setValueAt(aValue, row, 2);
-            }*/
         };
         this.tablemodel = tableModel;
         JLabel label = new JLabel("result");
@@ -191,7 +177,6 @@ public class CalculationWindow extends JFrame {
     public CalculationWindow() {
         super("Does it work? 0_0");
         this.setBounds(0, 100, 800, 600);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         if (factoryFirst instanceof LinkedListTabulatedFunction) {
             first = new LinkedListTabulatedFunction();
         } else {
@@ -338,7 +323,6 @@ public class CalculationWindow extends JFrame {
             try {
                 MyFrame.main(f -> {
                     first = f;
-                    // refreshFirst(first, tablemodel1, 1);
                 });
             } catch (Exception e) {
                 new ErrorWindow(this, e);
@@ -351,7 +335,6 @@ public class CalculationWindow extends JFrame {
             try {
                 MyFrame.main(f -> {
                     second = f;
-                    //refreshFirst(first, tablemodel2, 2);
                 });
             } catch (Exception e) {
                 new ErrorWindow(this, e);
@@ -387,28 +370,6 @@ public class CalculationWindow extends JFrame {
     }
 
     public void refreshFirst(TabulatedFunction func, AbstractTableModel tableModel, int k) {
-        /*Point[] massValues = TabulatedFunctionOperationService.asPoints(func);
-        if (k == 1) {
-            for (int i = 0; i < massValues.length; i++) {
-                //clearTable(tableModel.getRowCount(), tableModel, 1);
-                xFirst.add(massValues[i].x);
-                yFirst.add(massValues[i].y);
-            }
-        }
-        if (k == 2) {
-            //clearTable(tableModel.getRowCount(), tableModel, 2);
-            for (int i = 0; i < massValues.length; i++) {
-                xSecond.add(massValues[i].x);
-                ySecond.add(massValues[i].y);
-            }
-        }
-        if (k == 3) {
-            clearTable(tableModel.getRowCount(), tableModel, 3);
-            for (int i = 0; i < massValues.length; i++) {
-                xThird.add(massValues[i].x);
-                yThird.add(massValues[i].y);
-            }
-        }*/
         ((MyTabelModel1) tableModel).func = func;
         tableModel.fireTableDataChanged();
     }

@@ -10,7 +10,6 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -24,7 +23,7 @@ public class MyFrame extends JFrame {
     private JTextField countField = new JTextField();
     private JButton inputButton = new JButton("Input");
     private JButton commitButton = new JButton("Commit");
-    TabulatedFunctionFactory factory=new ArrayTabulatedFunctionFactory();
+    TabulatedFunctionFactory factory = new ArrayTabulatedFunctionFactory();
     TabulatedFunction func;
 
     public static void main(String[] args) {
@@ -45,7 +44,6 @@ public class MyFrame extends JFrame {
     public MyFrame() {
         super("Create with table");
         this.setBounds(300, 300, 500, 500);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addButtonListeners();
         compose();
         inputButton.setEnabled(false);
@@ -55,7 +53,6 @@ public class MyFrame extends JFrame {
     public MyFrame(Consumer<? super TabulatedFunction> callback) {
         super("Create with table");
         this.setBounds(300, 300, 500, 500);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addButtonListeners(callback);
         compose();
         inputButton.setEnabled(false);
@@ -66,7 +63,6 @@ public class MyFrame extends JFrame {
         super("Create with table");
         this.func = func;
         this.setBounds(300, 300, 500, 500);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addButtonListeners();
         compose();
         inputButton.setEnabled(false);
