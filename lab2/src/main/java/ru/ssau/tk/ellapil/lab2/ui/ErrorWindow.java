@@ -31,6 +31,9 @@ public class ErrorWindow {
         if (e instanceof InconsistentFunctionsException) {
             return "xValues are different";
         }
+        if (e instanceof IllegalArgumentException) {
+            return "That is not a valid function";
+        }
         return "Unknown error";
     }
 

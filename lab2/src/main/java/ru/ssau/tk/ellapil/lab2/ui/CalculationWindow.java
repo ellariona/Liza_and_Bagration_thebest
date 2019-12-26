@@ -17,7 +17,6 @@ public class CalculationWindow extends JFrame {
     JButton calculate = new JButton("Calculate");
     TabulatedFunctionFactory factoryResult = new ArrayTabulatedFunctionFactory();
     TabulatedFunctionFactory factoryFirst;
-    TabulatedFunctionFactory factorySecond;
     TabulatedFunction result = new ArrayTabulatedFunction();
     TabulatedFunction first = new ArrayTabulatedFunction();
     TabulatedFunction second = new ArrayTabulatedFunction();
@@ -168,7 +167,7 @@ public class CalculationWindow extends JFrame {
     }
 
     public CalculationWindow() {
-        super("Does it work? 0_0");
+        setTitle("Does it work? 0_0");
         this.setBounds(0, 100, 800, 600);
         if (factoryFirst instanceof LinkedListTabulatedFunction) {
             first = new LinkedListTabulatedFunction();

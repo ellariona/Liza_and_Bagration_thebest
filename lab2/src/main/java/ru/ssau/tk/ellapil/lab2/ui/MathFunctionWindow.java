@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class MathFunctionWindow extends JFrame {
+public class MathFunctionWindow extends JDialog {
     private JComboBox<String> functionComboBox = new JComboBox<>();
     private JLabel fromLabel = new JLabel("from:");
     private JLabel toLabel = new JLabel("to:");
@@ -36,7 +36,8 @@ public class MathFunctionWindow extends JFrame {
     }
 
     public MathFunctionWindow(Consumer<? super TabulatedFunction> callback) {
-        super("CreateFunc");
+        setModal(true);
+        setTitle("CreateFunc");
         this.setBounds(300, 200, 500, 200);
         fillMap();
         compose();
@@ -45,7 +46,8 @@ public class MathFunctionWindow extends JFrame {
 
 
     public MathFunctionWindow(TabulatedFunction function) {
-        super("CreateFunc");
+        setModal(true);
+        setTitle("CreateFunc");
         this.function = function;
         this.setBounds(300, 200, 500, 200);
         fillMap();
@@ -54,7 +56,8 @@ public class MathFunctionWindow extends JFrame {
     }
 
     public MathFunctionWindow() {
-        super("CreateFunc");
+        setModal(true);
+        setTitle("CreateFunc");
         this.setBounds(300, 200, 500, 200);
         fillMap();
         compose();
