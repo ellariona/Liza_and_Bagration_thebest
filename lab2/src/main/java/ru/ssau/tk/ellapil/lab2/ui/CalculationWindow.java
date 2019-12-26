@@ -11,7 +11,7 @@ import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.util.*;
 
-public class CalculationWindow extends JFrame {
+public class CalculationWindow extends JDialog {
     private Map<String, Integer> nameFunctionMap = new LinkedHashMap<>();
     private JComboBox<String> functionComboBox = new JComboBox<>();
     JButton calculate = new JButton("Calculate");
@@ -167,6 +167,7 @@ public class CalculationWindow extends JFrame {
     }
 
     public CalculationWindow() {
+        setModal(true);
         setTitle("Does it work? 0_0");
         this.setBounds(0, 100, 800, 600);
         if (factoryFirst instanceof LinkedListTabulatedFunction) {
