@@ -168,7 +168,7 @@ public class CalculationWindow extends JDialog {
 
     public CalculationWindow() {
         setModal(true);
-        setTitle("Does it work? 0_0");
+        setTitle("Calculation");
         this.setBounds(0, 100, 800, 600);
         if (factoryFirst instanceof LinkedListTabulatedFunction) {
             first = new LinkedListTabulatedFunction();
@@ -310,31 +310,6 @@ public class CalculationWindow extends JDialog {
             }
         });
     }
-
-    public void addListenerCreateByTable(JButton button, int k) {
-        button.addActionListener(event -> {
-            try {
-                MyFrame.main(f -> {
-                    first = f;
-                });
-            } catch (Exception e) {
-                new ErrorWindow(this, e);
-            }
-        });
-    }
-
-    public void addListenerCreateByTable(JButton button) {
-        button.addActionListener(event -> {
-            try {
-                MyFrame.main(f -> {
-                    second = f;
-                });
-            } catch (Exception e) {
-                new ErrorWindow(this, e);
-            }
-        });
-    }
-
 
     public void addListenerCreateByFnc(JButton button, AbstractTableModel tableModel) {
         button.addActionListener(event -> {
