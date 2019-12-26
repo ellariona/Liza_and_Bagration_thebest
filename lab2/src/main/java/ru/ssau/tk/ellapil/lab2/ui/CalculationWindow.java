@@ -13,12 +13,6 @@ import java.util.*;
 import java.util.List;
 
 public class CalculationWindow extends JFrame {
-    List<Double> xFirst = new ArrayList<>();
-    List<Double> yFirst = new ArrayList<>();
-    List<Double> xSecond = new ArrayList<>();
-    List<Double> ySecond = new ArrayList<>();
-    List<Double> xThird = new ArrayList<>();
-    List<Double> yThird = new ArrayList<>();
     private Map<String, Integer> nameFunctionMap = new LinkedHashMap<>();
     private JComboBox<String> functionComboBox = new JComboBox<>();
     JButton calculate = new JButton("Calculate");
@@ -372,30 +366,6 @@ public class CalculationWindow extends JFrame {
     public void refreshFirst(TabulatedFunction func, AbstractTableModel tableModel, int k) {
         ((MyTabelModel1) tableModel).func = func;
         tableModel.fireTableDataChanged();
-    }
-
-    public void clearTable(int n, AbstractTableModel tableModel, int k) {
-        if (k == 1) {
-            for (int i = 0; i < n; i++) {
-                xFirst.remove(n - i - 1);
-                yFirst.remove(n - i - 1);
-                tableModel.fireTableDataChanged();
-            }
-        }
-        if (k == 2) {
-            for (int i = 0; i < n; i++) {
-                xSecond.remove(n - i - 1);
-                ySecond.remove(n - i - 1);
-                tableModel.fireTableDataChanged();
-            }
-        }
-        if (k == 3) {
-            for (int i = 0; i < n; i++) {
-                xThird.remove(n - i - 1);
-                yThird.remove(n - i - 1);
-                tableModel.fireTableDataChanged();
-            }
-        }
     }
 
 }
