@@ -22,7 +22,7 @@ public class MathFunctionWindow extends JFrame {
     TabulatedFunction function;
     TabulatedFunctionFactory factory;
 
-    public static void main(JFrame args) {
+    public static void main(String[] args) {
         MathFunctionWindow app = new MathFunctionWindow();
         app.setVisible(true);
     }

@@ -3,6 +3,7 @@ package ru.ssau.tk.ellapil.lab2.ui;
 import ru.ssau.tk.ellapil.lab2.functions.AbstractTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.ellapil.lab2.functions.LinkedListTabulatedFunction;
+import ru.ssau.tk.ellapil.lab2.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.ellapil.lab2.functions.factory.TabulatedFunctionFactory;
 
 import javax.swing.*;
@@ -23,11 +24,14 @@ public class SettingWindow extends JFrame {
         setTitle("Settings");
         this.factory = factory;
         setSize(300, 200);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
+        fillMap();
+        compose();
+    }
+
+    public SettingWindow() {
+        setTitle("Settings");
+        factory = new ArrayTabulatedFunctionFactory();
+        setSize(300, 200);
         fillMap();
         compose();
     }
@@ -65,6 +69,11 @@ public class SettingWindow extends JFrame {
 
     public static void main(TabulatedFunctionFactory factory) {
         JFrame frame = new SettingWindow(factory);
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new SettingWindow();
         frame.setVisible(true);
     }
 }

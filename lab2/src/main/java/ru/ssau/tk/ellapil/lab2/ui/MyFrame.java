@@ -27,7 +27,7 @@ public class MyFrame extends JFrame {
     TabulatedFunctionFactory factory=new ArrayTabulatedFunctionFactory();
     TabulatedFunction func;
 
-    public static void main(JFrame args) {
+    public static void main(String[] args) {
         MyFrame app = new MyFrame();
         app.setVisible(true);
     }
